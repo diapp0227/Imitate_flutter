@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  LaunchView.swift
 //  imitate
 //
 //  Created by garigari0118 on 2025/08/17.
@@ -8,25 +8,46 @@
 import SwiftUI
 import Flutter
 
-struct ContentView: View {
+struct LaunchView: View {
     
     @StateObject private var viewModel = ContentViewModel()
     
     @EnvironmentObject var appDelegate: AppDelegate
     
+    let items = FunctionList.allCases
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            
-            Text(viewModel.helloWorldText)
-            Button("update") {
-                viewModel.loadHelloWorld(appDelegate)
+        NavigationStack {
+            List(items, id: \.self) { item in
+                Text(item.rawValue)
+                    .padding(.vertical, 8)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+                        tapListFunction(function: item)
+                    }
             }
+            .listStyle(PlainListStyle())
         }
-        .padding()
+// Flutter接続は一旦コメントアウト
+//        VStack {
+//            Text(viewModel.helloWorldText)
+//            Button("update") {
+//                viewModel.loadHelloWorld(appDelegate)
+//            }
+//        }
+//        .padding()
     }
+    
+    func tapListFunction(function: FunctionList) {
+        print("\(#function): \(function.rawValue)")
+        switch function {
+        case .helloWorld:
+            viewModel.loadHelloWorld(appDelegate)
+        default:
+            print("todo")
+        }
+    }
+    
 }
 
 class ContentViewModel: ObservableObject {
@@ -61,6 +82,15 @@ class HellowWorldRepository {
     }
 }
 
+enum FunctionList: String, CaseIterable {
+    case helloWorld = "HelloWorld"
+    case test01
+    case test02
+    case test03
+    case test04
+    case test05
+}
+
 #Preview {
-    ContentView()
+    LaunchView()
 }

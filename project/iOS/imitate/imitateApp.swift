@@ -14,7 +14,7 @@ struct imitateApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LaunchView()
         }
     }
 }
