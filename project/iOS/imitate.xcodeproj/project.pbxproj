@@ -10,11 +10,7 @@
 		B93EE8292ED4AD6D00C42937 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93EE8272ED4AD6D00C42937 /* App.xcframework */; };
 		B93EE82A2ED4AD6D00C42937 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93EE8282ED4AD6D00C42937 /* Flutter.xcframework */; };
 		B96CBAAB2E51BF3A00DB2E48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */; };
-		B96CBAAC2E51BF3A00DB2E48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */; };
-		B96CBAAD2E51BF3A00DB2E48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */; };
 		B96CBAAF2E51BF7800DB2E48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */; };
-		B96CBAB02E51BF7800DB2E48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */; };
-		B96CBAB12E51BF7800DB2E48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */; };
 		B9B00CD02E518DED00BCB306 /* imitateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CCF2E518DED00BCB306 /* imitateApp.swift */; };
 		B9B00CD22E518DED00BCB306 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CD12E518DED00BCB306 /* LaunchView.swift */; };
 		B9B00CD42E518DEE00BCB306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9B00CD32E518DEE00BCB306 /* Assets.xcassets */; };
@@ -22,6 +18,34 @@
 		B9B00CE12E518DEE00BCB306 /* imitateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CE02E518DEE00BCB306 /* imitateTests.swift */; };
 		B9B00CEB2E518DEE00BCB306 /* imitateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CEA2E518DEE00BCB306 /* imitateUITests.swift */; };
 		B9B00CED2E518DEE00BCB306 /* imitateUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CEC2E518DEE00BCB306 /* imitateUITestsLaunchTests.swift */; };
+		B9C191A42EFFDBD200AFE3C3 /* BaseHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191A32EFFDBD200AFE3C3 /* BaseHomeView.swift */; };
+		B9C191A52EFFDC2100AFE3C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */; };
+		B9C191A62EFFDC2100AFE3C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */; };
+		B9C191A72EFFDC2400AFE3C3 /* BaseHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191A32EFFDBD200AFE3C3 /* BaseHomeView.swift */; };
+		B9C191A82EFFDC2400AFE3C3 /* BaseHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191A32EFFDBD200AFE3C3 /* BaseHomeView.swift */; };
+		B9C191A92EFFDC2A00AFE3C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */; };
+		B9C191AA2EFFDC2A00AFE3C3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */; };
+		B9C191AB2EFFDC2D00AFE3C3 /* imitateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CCF2E518DED00BCB306 /* imitateApp.swift */; };
+		B9C191AC2EFFDC2D00AFE3C3 /* imitateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CCF2E518DED00BCB306 /* imitateApp.swift */; };
+		B9C191AD2EFFDC3000AFE3C3 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CD12E518DED00BCB306 /* LaunchView.swift */; };
+		B9C191AE2EFFDC3000AFE3C3 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CD12E518DED00BCB306 /* LaunchView.swift */; };
+		B9C191AF2EFFDC3300AFE3C3 /* FlutterEngineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */; };
+		B9C191B02EFFDC3300AFE3C3 /* FlutterEngineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */; };
+		B9C191B42EFFDCD100AFE3C3 /* TopHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191B32EFFDCD100AFE3C3 /* TopHomeView.swift */; };
+		B9C191B52EFFDCD100AFE3C3 /* TopHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191B32EFFDCD100AFE3C3 /* TopHomeView.swift */; };
+		B9C191B62EFFDCD100AFE3C3 /* TopHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191B32EFFDCD100AFE3C3 /* TopHomeView.swift */; };
+		B9C191B92EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191B82EFFDDB700AFE3C3 /* InputHomeView.swift */; };
+		B9C191BA2EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191B82EFFDDB700AFE3C3 /* InputHomeView.swift */; };
+		B9C191BB2EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191B82EFFDDB700AFE3C3 /* InputHomeView.swift */; };
+		B9C191BD2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191BC2EFFDE3000AFE3C3 /* GameHomeView.swift */; };
+		B9C191BE2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191BC2EFFDE3000AFE3C3 /* GameHomeView.swift */; };
+		B9C191BF2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191BC2EFFDE3000AFE3C3 /* GameHomeView.swift */; };
+		B9C191C12EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C02EFFDE4E00AFE3C3 /* HistoryHomeView.swift */; };
+		B9C191C22EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C02EFFDE4E00AFE3C3 /* HistoryHomeView.swift */; };
+		B9C191C32EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C02EFFDE4E00AFE3C3 /* HistoryHomeView.swift */; };
+		B9C191C52EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */; };
+		B9C191C62EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */; };
+		B9C191C72EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */; };
 		B9D08D302E520ED20074BFD5 /* FlutterEngineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +94,12 @@
 		B9B00CE62E518DEE00BCB306 /* imitateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = imitateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B00CEA2E518DEE00BCB306 /* imitateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imitateUITests.swift; sourceTree = "<group>"; };
 		B9B00CEC2E518DEE00BCB306 /* imitateUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imitateUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B9C191A32EFFDBD200AFE3C3 /* BaseHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHomeView.swift; sourceTree = "<group>"; };
+		B9C191B32EFFDCD100AFE3C3 /* TopHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHomeView.swift; sourceTree = "<group>"; };
+		B9C191B82EFFDDB700AFE3C3 /* InputHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHomeView.swift; sourceTree = "<group>"; };
+		B9C191BC2EFFDE3000AFE3C3 /* GameHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHomeView.swift; sourceTree = "<group>"; };
+		B9C191C02EFFDE4E00AFE3C3 /* HistoryHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHomeView.swift; sourceTree = "<group>"; };
+		B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHomeView.swift; sourceTree = "<group>"; };
 		B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterEngineManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */,
+				B9C191B72EFFDD6C00AFE3C3 /* HomeView */,
 				B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */,
 				B9B00CCF2E518DED00BCB306 /* imitateApp.swift */,
 				B9B00CD12E518DED00BCB306 /* LaunchView.swift */,
@@ -158,6 +189,19 @@
 				B9B00CEC2E518DEE00BCB306 /* imitateUITestsLaunchTests.swift */,
 			);
 			path = imitateUITests;
+			sourceTree = "<group>";
+		};
+		B9C191B72EFFDD6C00AFE3C3 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				B9C191A32EFFDBD200AFE3C3 /* BaseHomeView.swift */,
+				B9C191B32EFFDCD100AFE3C3 /* TopHomeView.swift */,
+				B9C191B82EFFDDB700AFE3C3 /* InputHomeView.swift */,
+				B9C191BC2EFFDE3000AFE3C3 /* GameHomeView.swift */,
+				B9C191C02EFFDE4E00AFE3C3 /* HistoryHomeView.swift */,
+				B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */,
+			);
+			path = HomeView;
 			sourceTree = "<group>";
 		};
 		B9D08D2E2E52058F0074BFD5 /* Frameworks */ = {
@@ -300,11 +344,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9C191C12EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */,
 				B96CBAAB2E51BF3A00DB2E48 /* AppDelegate.swift in Sources */,
+				B9C191B42EFFDCD100AFE3C3 /* TopHomeView.swift in Sources */,
+				B9C191C52EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */,
+				B9C191B92EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */,
 				B9B00CD22E518DED00BCB306 /* LaunchView.swift in Sources */,
+				B9C191A42EFFDBD200AFE3C3 /* BaseHomeView.swift in Sources */,
 				B9D08D302E520ED20074BFD5 /* FlutterEngineManager.swift in Sources */,
 				B9B00CD02E518DED00BCB306 /* imitateApp.swift in Sources */,
 				B96CBAAF2E51BF7800DB2E48 /* SceneDelegate.swift in Sources */,
+				B9C191BD2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,9 +362,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B96CBAAC2E51BF3A00DB2E48 /* AppDelegate.swift in Sources */,
+				B9C191A52EFFDC2100AFE3C3 /* AppDelegate.swift in Sources */,
+				B9C191AD2EFFDC3000AFE3C3 /* LaunchView.swift in Sources */,
 				B9B00CE12E518DEE00BCB306 /* imitateTests.swift in Sources */,
-				B96CBAB02E51BF7800DB2E48 /* SceneDelegate.swift in Sources */,
+				B9C191B52EFFDCD100AFE3C3 /* TopHomeView.swift in Sources */,
+				B9C191A72EFFDC2400AFE3C3 /* BaseHomeView.swift in Sources */,
+				B9C191A92EFFDC2A00AFE3C3 /* SceneDelegate.swift in Sources */,
+				B9C191C62EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */,
+				B9C191AB2EFFDC2D00AFE3C3 /* imitateApp.swift in Sources */,
+				B9C191AF2EFFDC3300AFE3C3 /* FlutterEngineManager.swift in Sources */,
+				B9C191BA2EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */,
+				B9C191BE2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */,
+				B9C191C22EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,10 +381,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B96CBAAD2E51BF3A00DB2E48 /* AppDelegate.swift in Sources */,
+				B9C191AA2EFFDC2A00AFE3C3 /* SceneDelegate.swift in Sources */,
+				B9C191AC2EFFDC2D00AFE3C3 /* imitateApp.swift in Sources */,
+				B9C191BB2EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */,
+				B9C191B62EFFDCD100AFE3C3 /* TopHomeView.swift in Sources */,
+				B9C191A82EFFDC2400AFE3C3 /* BaseHomeView.swift in Sources */,
+				B9C191AE2EFFDC3000AFE3C3 /* LaunchView.swift in Sources */,
+				B9C191C32EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */,
+				B9C191B02EFFDC3300AFE3C3 /* FlutterEngineManager.swift in Sources */,
+				B9C191A62EFFDC2100AFE3C3 /* AppDelegate.swift in Sources */,
 				B9B00CED2E518DEE00BCB306 /* imitateUITestsLaunchTests.swift in Sources */,
 				B9B00CEB2E518DEE00BCB306 /* imitateUITests.swift in Sources */,
-				B96CBAB12E51BF7800DB2E48 /* SceneDelegate.swift in Sources */,
+				B9C191C72EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */,
+				B9C191BF2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
