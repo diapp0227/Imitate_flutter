@@ -16,7 +16,7 @@
 		B96CBAB02E51BF7800DB2E48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */; };
 		B96CBAB12E51BF7800DB2E48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */; };
 		B9B00CD02E518DED00BCB306 /* imitateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CCF2E518DED00BCB306 /* imitateApp.swift */; };
-		B9B00CD22E518DED00BCB306 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CD12E518DED00BCB306 /* ContentView.swift */; };
+		B9B00CD22E518DED00BCB306 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CD12E518DED00BCB306 /* LaunchView.swift */; };
 		B9B00CD42E518DEE00BCB306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9B00CD32E518DEE00BCB306 /* Assets.xcassets */; };
 		B9B00CD72E518DEE00BCB306 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9B00CD62E518DEE00BCB306 /* Preview Assets.xcassets */; };
 		B9B00CE12E518DEE00BCB306 /* imitateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CE02E518DEE00BCB306 /* imitateTests.swift */; };
@@ -62,7 +62,7 @@
 		B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B9B00CCC2E518DED00BCB306 /* imitate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imitate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B00CCF2E518DED00BCB306 /* imitateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imitateApp.swift; sourceTree = "<group>"; };
-		B9B00CD12E518DED00BCB306 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B9B00CD12E518DED00BCB306 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		B9B00CD32E518DEE00BCB306 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B9B00CD62E518DEE00BCB306 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B9B00CDC2E518DEE00BCB306 /* imitateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = imitateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,7 +127,7 @@
 				B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */,
 				B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */,
 				B9B00CCF2E518DED00BCB306 /* imitateApp.swift */,
-				B9B00CD12E518DED00BCB306 /* ContentView.swift */,
+				B9B00CD12E518DED00BCB306 /* LaunchView.swift */,
 				B9B00CD32E518DEE00BCB306 /* Assets.xcassets */,
 				B9B00CD52E518DEE00BCB306 /* Preview Content */,
 				B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */,
@@ -301,7 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B96CBAAB2E51BF3A00DB2E48 /* AppDelegate.swift in Sources */,
-				B9B00CD22E518DED00BCB306 /* ContentView.swift in Sources */,
+				B9B00CD22E518DED00BCB306 /* LaunchView.swift in Sources */,
 				B9D08D302E520ED20074BFD5 /* FlutterEngineManager.swift in Sources */,
 				B9B00CD02E518DED00BCB306 /* imitateApp.swift in Sources */,
 				B96CBAAF2E51BF7800DB2E48 /* SceneDelegate.swift in Sources */,

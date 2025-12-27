@@ -4,10 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.OutlinedTextFieldDefaults.contentPadding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -17,6 +23,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.lifecycleScope
 import com.example.imitate_android.ui.theme.Imitate_androidTheme
 import io.flutter.embedding.engine.FlutterEngine
@@ -29,6 +36,7 @@ import kotlin.coroutines.suspendCoroutine
 class MainActivity : ComponentActivity() {
 
     var methodChannel: MethodChannel? = null
+    val functionList = listOf("HelloWorld", "test01", "test02", "test03", "test04", "test05")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,37 +88,60 @@ class MainActivity : ComponentActivity() {
         })
     }
 
+    fun clickFunctionList(functionName: String) {
+        println("clickFunctionList$functionName")
+        when(functionName) {
+            "HelloWorld" -> print("")
+            else -> print(functionName)
+        }
+    }
+
     @Composable
     fun Greeting(name: String, modifier: Modifier = Modifier) {
 
         var message by remember { mutableStateOf(name) }
 
-        Column {
-            Text(
-                text = message,
-                modifier = modifier
-            )
-            Button(
-                onClick = {
-                    println("onClick")
-                    lifecycleScope.launch {
-                        try {
-                            message = fetch()
-                        } catch (e: Exception) {
-                        }
+        LazyColumn (modifier = modifier) {
+            items(
+                count = functionList.size
+                ) { index ->
+                    val item = functionList[index]
+                Text(
+                    text = item,
+                    modifier = modifier.fillMaxSize().clickable {
+                        clickFunctionList(item)
                     }
-                }
-            ) {
-                Text("update")
+                )
             }
         }
-    }
 
-    @Preview(showBackground = true)
-    @Composable
-    fun GreetingPreview() {
-        Imitate_androidTheme {
-            Greeting("Android")
-        }
+
+// Flutterのコードを一旦コメントアウト
+//        Column {
+//            Text(
+//                text = message,
+//                modifier = modifier
+//            )
+//            Button(
+//                onClick = {
+//                    println("onClick")
+//                    lifecycleScope.launch {
+//                        try {
+//                            message = fetch()
+//                        } catch (e: Exception) {
+//                        }
+//                    }
+//                }
+//            ) {
+//                Text("update")
+//            }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    Imitate_androidTheme {
+        Greeting("Android")
     }
+}
 }
