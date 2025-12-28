@@ -9,7 +9,12 @@ import SwiftUI
 
 struct TopHomeView: View {
     var body: some View {
-        Text("TopHomeView")
+        ScrollView {
+            VStack(alignment: .leading, spacing: 8) {
+                BalanceView(type: .income, balance: "200000")
+                BalanceView(type: .expenses, balance: "200000")
+            }
+        }
     }
 }
 

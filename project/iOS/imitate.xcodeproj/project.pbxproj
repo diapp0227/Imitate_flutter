@@ -46,6 +46,9 @@
 		B9C191C52EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */; };
 		B9C191C62EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */; };
 		B9C191C72EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */; };
+		B9C191CA2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */; };
+		B9C191CB2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */; };
+		B9C191CC2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */; };
 		B9D08D302E520ED20074BFD5 /* FlutterEngineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +103,7 @@
 		B9C191BC2EFFDE3000AFE3C3 /* GameHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameHomeView.swift; sourceTree = "<group>"; };
 		B9C191C02EFFDE4E00AFE3C3 /* HistoryHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHomeView.swift; sourceTree = "<group>"; };
 		B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHomeView.swift; sourceTree = "<group>"; };
+		B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
 		B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterEngineManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -200,8 +204,17 @@
 				B9C191BC2EFFDE3000AFE3C3 /* GameHomeView.swift */,
 				B9C191C02EFFDE4E00AFE3C3 /* HistoryHomeView.swift */,
 				B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */,
+				B9C191C82EFFF4A400AFE3C3 /* TopHome */,
 			);
 			path = HomeView;
+			sourceTree = "<group>";
+		};
+		B9C191C82EFFF4A400AFE3C3 /* TopHome */ = {
+			isa = PBXGroup;
+			children = (
+				B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */,
+			);
+			path = TopHome;
 			sourceTree = "<group>";
 		};
 		B9D08D2E2E52058F0074BFD5 /* Frameworks */ = {
@@ -353,6 +366,7 @@
 				B9C191A42EFFDBD200AFE3C3 /* BaseHomeView.swift in Sources */,
 				B9D08D302E520ED20074BFD5 /* FlutterEngineManager.swift in Sources */,
 				B9B00CD02E518DED00BCB306 /* imitateApp.swift in Sources */,
+				B9C191CA2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */,
 				B96CBAAF2E51BF7800DB2E48 /* SceneDelegate.swift in Sources */,
 				B9C191BD2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */,
 			);
@@ -374,6 +388,7 @@
 				B9C191BA2EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */,
 				B9C191BE2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */,
 				B9C191C22EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */,
+				B9C191CB2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -394,6 +409,7 @@
 				B9B00CEB2E518DEE00BCB306 /* imitateUITests.swift in Sources */,
 				B9C191C72EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */,
 				B9C191BF2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */,
+				B9C191CC2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
