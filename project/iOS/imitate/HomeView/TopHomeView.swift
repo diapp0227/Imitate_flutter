@@ -9,10 +9,31 @@ import SwiftUI
 
 struct TopHomeView: View {
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 8) {
-                BalanceView(type: .income, balance: "200000")
-                BalanceView(type: .expenses, balance: "200000")
+        ZStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 8) {
+                    BalanceView(type: .income, balance: "200000")
+                    BalanceView(type: .expenses, balance: "200000")
+                }
+            }
+            
+            VStack {
+              Spacer()
+              HStack {
+                Spacer()
+                Button(action: {
+                    tapPlusButton()
+                }) {
+                  Image(systemName: "plus")
+                    .foregroundColor(.white)
+                    .font(.system(size: 24, weight: .bold))
+                    .frame(width: 56, height: 56)
+                    .background(Color.blue)
+                    .clipShape(Circle())
+                    .shadow(radius: 4)
+                }
+                .padding()
+              }
             }
         }
     }
