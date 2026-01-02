@@ -37,6 +37,26 @@ struct TopHomeView: View {
             }
         }
     }
+    
+    func tapPlusButton() {
+
+// レコード追加
+//        BalanceRecordRepository.shared.insertRecord(arguments: ["type": "支出",
+//                                                                "incomeCategory": "",
+//                                                                "expenseCategory": "食費",
+//                                                                "amount": 1200,
+//                                                                "memo": "昼ごはん",
+//                                                                "date": "2026-01-02",
+//                                                                "createdAt": "2026-01-02",
+//                                                                "gameFlag": false])
+
+// レコード取得
+//        BalanceRecordRepository.shared.selectAll(onSuccess: {_ in
+//            print("success")
+//        }, onFailure: {
+//            print("failure")
+//        })
+    }
 }
 
 #Preview {
