@@ -23,6 +23,7 @@ class BalanceRecordRepository {
           return null;
         case 'selectAll':
           final list = await selectAll();
+          print('dart selectAll result: $list');
           return list;
         default:
           throw PlatformException(code: 'Unimplemented');
@@ -59,9 +60,8 @@ class BalanceRecordRepository {
   Future<void> insert(Map<String, dynamic> args) async {
     print('insert: $args');
     final db = await database;
-
     try {
-      await db.insert(
+      final id = await db.insert(
         'balanceRecords',
         {
           'type': args['type'],
@@ -74,6 +74,7 @@ class BalanceRecordRepository {
           'game_flag': args['gameFlag'] ? 1 : 0,
         },
       );
+      print('inserted id: $id');
     } catch (e, stack) {
       print('insert error: $e');
       print(stack);
@@ -83,6 +84,7 @@ class BalanceRecordRepository {
   Future<List<Map<String, dynamic>>> selectAll() async {
     print('selectAll');
     final db = await database;
+    // print(await db.rawQuery('SELECT COUNT(*) FROM balanceRecords'));
     return await db.query('balanceRecords');
   }
 }
