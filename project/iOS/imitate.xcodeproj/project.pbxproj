@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		B93EE8292ED4AD6D00C42937 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93EE8272ED4AD6D00C42937 /* App.xcframework */; };
 		B93EE82A2ED4AD6D00C42937 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93EE8282ED4AD6D00C42937 /* Flutter.xcframework */; };
+		B961A25E2F08484700B2989C /* FlutterPluginRegistrant.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B961A25D2F08484700B2989C /* FlutterPluginRegistrant.xcframework */; };
+		B961A25F2F08484700B2989C /* FlutterPluginRegistrant.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B961A25D2F08484700B2989C /* FlutterPluginRegistrant.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B961A2612F08485800B2989C /* sqflite_darwin.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B961A2602F08485800B2989C /* sqflite_darwin.xcframework */; };
+		B961A2622F08485800B2989C /* sqflite_darwin.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B961A2602F08485800B2989C /* sqflite_darwin.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B96CBAAB2E51BF3A00DB2E48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */; };
 		B96CBAAF2E51BF7800DB2E48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */; };
 		B9B00CD02E518DED00BCB306 /* imitateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CCF2E518DED00BCB306 /* imitateApp.swift */; };
@@ -76,6 +80,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B961A25F2F08484700B2989C /* FlutterPluginRegistrant.xcframework in Embed Frameworks */,
+				B961A2622F08485800B2989C /* sqflite_darwin.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +91,8 @@
 /* Begin PBXFileReference section */
 		B93EE8272ED4AD6D00C42937 /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = ../../Flutter/build/ios/framework/Debug/App.xcframework; sourceTree = "<group>"; };
 		B93EE8282ED4AD6D00C42937 /* Flutter.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:S8QB4VV633:FLUTTER.IO LLC"; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = ../../Flutter/build/ios/framework/Debug/Flutter.xcframework; sourceTree = "<group>"; };
+		B961A25D2F08484700B2989C /* FlutterPluginRegistrant.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FlutterPluginRegistrant.xcframework; path = ../../Flutter/build/ios/framework/Debug/FlutterPluginRegistrant.xcframework; sourceTree = "<group>"; };
+		B961A2602F08485800B2989C /* sqflite_darwin.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = sqflite_darwin.xcframework; path = ../../Flutter/build/ios/framework/Debug/sqflite_darwin.xcframework; sourceTree = "<group>"; };
 		B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B9B00CCC2E518DED00BCB306 /* imitate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imitate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +121,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B93EE82A2ED4AD6D00C42937 /* Flutter.xcframework in Frameworks */,
+				B961A2612F08485800B2989C /* sqflite_darwin.xcframework in Frameworks */,
+				B961A25E2F08484700B2989C /* FlutterPluginRegistrant.xcframework in Frameworks */,
 				B93EE8292ED4AD6D00C42937 /* App.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,6 +230,8 @@
 		B9D08D2E2E52058F0074BFD5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B961A2602F08485800B2989C /* sqflite_darwin.xcframework */,
+				B961A25D2F08484700B2989C /* FlutterPluginRegistrant.xcframework */,
 				B93EE8272ED4AD6D00C42937 /* App.xcframework */,
 				B93EE8282ED4AD6D00C42937 /* Flutter.xcframework */,
 			);
