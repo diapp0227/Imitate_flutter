@@ -6,6 +6,7 @@
 //
 
 import Flutter
+import FlutterPluginRegistrant
 
 class FlutterEngineManager {
     
@@ -14,11 +15,10 @@ class FlutterEngineManager {
     private(set) var flutterEngine: FlutterEngine?
     
     private(set) var channel: FlutterMethodChannel?
-    
+
     func initialize() {
-        flutterEngine = FlutterEngine(name: "HellowWorldRepository")
+        flutterEngine = FlutterEngine(name: "")
         flutterEngine?.run()
-        
         setChannel()
     }
     
@@ -26,6 +26,7 @@ class FlutterEngineManager {
         guard let flutterEngine = flutterEngine else {
             return
         }
-        channel = FlutterMethodChannel(name: "HelloWorldRepository", binaryMessenger: flutterEngine.binaryMessenger)
+        GeneratedPluginRegistrant.register(with: flutterEngine)
+        channel = FlutterMethodChannel(name: "BalanceRecordRepository", binaryMessenger: flutterEngine.binaryMessenger)
     }
 }

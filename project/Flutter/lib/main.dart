@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
-import 'HelloWorldRepository.dart';
+import 'BalanceRecordRepository.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  final HelloWorldRepository repo = HelloWorldRepository();
+  final BalanceRecordRepository repo = BalanceRecordRepository();
   repo.registerMethodHandler();
 }
 

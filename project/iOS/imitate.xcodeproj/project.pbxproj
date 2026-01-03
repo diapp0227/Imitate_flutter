@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		B93EE8292ED4AD6D00C42937 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93EE8272ED4AD6D00C42937 /* App.xcframework */; };
 		B93EE82A2ED4AD6D00C42937 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93EE8282ED4AD6D00C42937 /* Flutter.xcframework */; };
+		B961A25E2F08484700B2989C /* FlutterPluginRegistrant.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B961A25D2F08484700B2989C /* FlutterPluginRegistrant.xcframework */; };
+		B961A25F2F08484700B2989C /* FlutterPluginRegistrant.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B961A25D2F08484700B2989C /* FlutterPluginRegistrant.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B961A2612F08485800B2989C /* sqflite_darwin.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B961A2602F08485800B2989C /* sqflite_darwin.xcframework */; };
+		B961A2622F08485800B2989C /* sqflite_darwin.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B961A2602F08485800B2989C /* sqflite_darwin.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B96CBAAB2E51BF3A00DB2E48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */; };
 		B96CBAAF2E51BF7800DB2E48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */; };
 		B9B00CD02E518DED00BCB306 /* imitateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CCF2E518DED00BCB306 /* imitateApp.swift */; };
@@ -49,6 +53,9 @@
 		B9C191CA2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */; };
 		B9C191CB2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */; };
 		B9C191CC2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */; };
+		B9C191CE2F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */; };
+		B9C191CF2F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */; };
+		B9C191D02F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */; };
 		B9D08D302E520ED20074BFD5 /* FlutterEngineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +83,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B961A25F2F08484700B2989C /* FlutterPluginRegistrant.xcframework in Embed Frameworks */,
+				B961A2622F08485800B2989C /* sqflite_darwin.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,6 +94,8 @@
 /* Begin PBXFileReference section */
 		B93EE8272ED4AD6D00C42937 /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = ../../Flutter/build/ios/framework/Debug/App.xcframework; sourceTree = "<group>"; };
 		B93EE8282ED4AD6D00C42937 /* Flutter.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:S8QB4VV633:FLUTTER.IO LLC"; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = ../../Flutter/build/ios/framework/Debug/Flutter.xcframework; sourceTree = "<group>"; };
+		B961A25D2F08484700B2989C /* FlutterPluginRegistrant.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FlutterPluginRegistrant.xcframework; path = ../../Flutter/build/ios/framework/Debug/FlutterPluginRegistrant.xcframework; sourceTree = "<group>"; };
+		B961A2602F08485800B2989C /* sqflite_darwin.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = sqflite_darwin.xcframework; path = ../../Flutter/build/ios/framework/Debug/sqflite_darwin.xcframework; sourceTree = "<group>"; };
 		B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B9B00CCC2E518DED00BCB306 /* imitate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imitate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +115,7 @@
 		B9C191C02EFFDE4E00AFE3C3 /* HistoryHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHomeView.swift; sourceTree = "<group>"; };
 		B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHomeView.swift; sourceTree = "<group>"; };
 		B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
+		B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceRecordRepository.swift; sourceTree = "<group>"; };
 		B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterEngineManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +125,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B93EE82A2ED4AD6D00C42937 /* Flutter.xcframework in Frameworks */,
+				B961A2612F08485800B2989C /* sqflite_darwin.xcframework in Frameworks */,
+				B961A25E2F08484700B2989C /* FlutterPluginRegistrant.xcframework in Frameworks */,
 				B93EE8292ED4AD6D00C42937 /* App.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -166,6 +180,7 @@
 				B9B00CD32E518DEE00BCB306 /* Assets.xcassets */,
 				B9B00CD52E518DEE00BCB306 /* Preview Content */,
 				B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */,
+				B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */,
 			);
 			path = imitate;
 			sourceTree = "<group>";
@@ -220,6 +235,8 @@
 		B9D08D2E2E52058F0074BFD5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B961A2602F08485800B2989C /* sqflite_darwin.xcframework */,
+				B961A25D2F08484700B2989C /* FlutterPluginRegistrant.xcframework */,
 				B93EE8272ED4AD6D00C42937 /* App.xcframework */,
 				B93EE8282ED4AD6D00C42937 /* Flutter.xcframework */,
 			);
@@ -360,6 +377,7 @@
 				B9C191C12EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */,
 				B96CBAAB2E51BF3A00DB2E48 /* AppDelegate.swift in Sources */,
 				B9C191B42EFFDCD100AFE3C3 /* TopHomeView.swift in Sources */,
+				B9C191CE2F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */,
 				B9C191C52EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */,
 				B9C191B92EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */,
 				B9B00CD22E518DED00BCB306 /* LaunchView.swift in Sources */,
@@ -385,6 +403,7 @@
 				B9C191C62EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */,
 				B9C191AB2EFFDC2D00AFE3C3 /* imitateApp.swift in Sources */,
 				B9C191AF2EFFDC3300AFE3C3 /* FlutterEngineManager.swift in Sources */,
+				B9C191CF2F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */,
 				B9C191BA2EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */,
 				B9C191BE2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */,
 				B9C191C22EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */,
@@ -405,6 +424,7 @@
 				B9C191C32EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */,
 				B9C191B02EFFDC3300AFE3C3 /* FlutterEngineManager.swift in Sources */,
 				B9C191A62EFFDC2100AFE3C3 /* AppDelegate.swift in Sources */,
+				B9C191D02F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */,
 				B9B00CED2E518DEE00BCB306 /* imitateUITestsLaunchTests.swift in Sources */,
 				B9B00CEB2E518DEE00BCB306 /* imitateUITests.swift in Sources */,
 				B9C191C72EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */,
