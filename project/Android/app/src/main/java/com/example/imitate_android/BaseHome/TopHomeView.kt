@@ -7,10 +7,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -22,8 +27,11 @@ import com.example.imitate_android.BaseHome.TopHome.BalanceViewType
 import kotlinx.coroutines.launch
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopHomeView(viewModel: TopHomeViewModel = TopHomeViewModel()) {
+
+    var showInputHomeView by remember { mutableStateOf(false) }
 
     Box(
         modifier = Modifier
@@ -46,6 +54,7 @@ fun TopHomeView(viewModel: TopHomeViewModel = TopHomeViewModel()) {
         // プラスボタン押下時
         FloatingActionButton(
             onClick = {
+                showInputHomeView = true
 //                val data: Map<String, Any> = mapOf(
 //                    "type" to "支出",
 //                    "incomeCategory" to "",
@@ -67,6 +76,15 @@ fun TopHomeView(viewModel: TopHomeViewModel = TopHomeViewModel()) {
                 imageVector = Icons.Default.Add,
                 contentDescription = "Add"
             )
+        }
+
+        if (showInputHomeView) {
+            ModalBottomSheet(
+                onDismissRequest = { showInputHomeView = false },  // 背景タップやドラッグで閉じる
+                // sheetState = rememberModalBottomSheetState(),  // 必要に応じてカスタム
+            ) {
+                InputHomeView()
+            }
         }
     }
 }

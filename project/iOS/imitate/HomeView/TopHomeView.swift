@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct TopHomeView: View {
+    
+    @State private var showingSheetToInputHome = false
+    
     var body: some View {
         ZStack {
             ScrollView {
@@ -18,44 +21,35 @@ struct TopHomeView: View {
             }
             
             VStack {
-              Spacer()
-              HStack {
                 Spacer()
-                Button(action: {
-                    tapPlusButton()
-                }) {
-                  Image(systemName: "plus")
-                    .foregroundColor(.white)
-                    .font(.system(size: 24, weight: .bold))
-                    .frame(width: 56, height: 56)
-                    .background(Color.blue)
-                    .clipShape(Circle())
-                    .shadow(radius: 4)
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        tapPlusButton()
+                    }) {
+                        Image(systemName: "plus")
+                            .foregroundColor(.white)
+                            .font(.system(size: 24, weight: .bold))
+                            .frame(width: 56, height: 56)
+                            .background(Color.blue)
+                            .clipShape(Circle())
+                            .shadow(radius: 4)
+                    }
+                    .padding()
                 }
-                .padding()
-              }
             }
+            
+        }
+        .sheet(isPresented: $showingSheetToInputHome ) {
+            NavigationStack {
+                InputHomeView()
+            }
+            .presentationDetents([.fraction(0.75), .large])
         }
     }
     
     func tapPlusButton() {
-
-// レコード追加
-//        BalanceRecordRepository.shared.insertRecord(arguments: ["type": "支出",
-//                                                                "incomeCategory": "",
-//                                                                "expenseCategory": "食費",
-//                                                                "amount": 1200,
-//                                                                "memo": "昼ごはん",
-//                                                                "date": "2026-01-02",
-//                                                                "createdAt": "2026-01-02",
-//                                                                "gameFlag": false])
-
-// レコード取得
-//        BalanceRecordRepository.shared.selectAll(onSuccess: {_ in
-//            print("success")
-//        }, onFailure: {
-//            print("failure")
-//        })
+        showingSheetToInputHome = true
     }
 }
 
