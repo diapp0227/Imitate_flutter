@@ -64,6 +64,11 @@
 		B9C191D02F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */; };
 		B9D08D302E520ED20074BFD5 /* FlutterEngineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */; };
 		B9DEC5572F1BF4AC0085FEC5 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DEC5562F1BF4AC0085FEC5 /* DateExtension.swift */; };
+		B9DEC55A2F1D525C0085FEC5 /* HistoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DEC5592F1D525C0085FEC5 /* HistoryRowView.swift */; };
+		B9DEC55B2F1D538B0085FEC5 /* HistoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DEC5592F1D525C0085FEC5 /* HistoryRowView.swift */; };
+		B9DEC55C2F1D538C0085FEC5 /* HistoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DEC5592F1D525C0085FEC5 /* HistoryRowView.swift */; };
+		B9DEC55D2F1D53930085FEC5 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DEC5562F1BF4AC0085FEC5 /* DateExtension.swift */; };
+		B9DEC55E2F1D53930085FEC5 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DEC5562F1BF4AC0085FEC5 /* DateExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +132,7 @@
 		B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceRecordRepository.swift; sourceTree = "<group>"; };
 		B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterEngineManager.swift; sourceTree = "<group>"; };
 		B9DEC5562F1BF4AC0085FEC5 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		B9DEC5592F1D525C0085FEC5 /* HistoryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +245,7 @@
 				B9C191BC2EFFDE3000AFE3C3 /* GameHomeView.swift */,
 				B9C191C02EFFDE4E00AFE3C3 /* HistoryHomeView.swift */,
 				B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */,
+				B9DEC5582F1D51980085FEC5 /* HistoryHome */,
 				B9C191C82EFFF4A400AFE3C3 /* TopHome */,
 				B961A2682F09847400B2989C /* InputHome */,
 			);
@@ -262,6 +269,14 @@
 				B93EE8282ED4AD6D00C42937 /* Flutter.xcframework */,
 			);
 			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		B9DEC5582F1D51980085FEC5 /* HistoryHome */ = {
+			isa = PBXGroup;
+			children = (
+				B9DEC5592F1D525C0085FEC5 /* HistoryRowView.swift */,
+			);
+			path = HistoryHome;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -403,6 +418,7 @@
 				B9C191B92EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */,
 				B9B00CD22E518DED00BCB306 /* LaunchView.swift in Sources */,
 				B9C191A42EFFDBD200AFE3C3 /* BaseHomeView.swift in Sources */,
+				B9DEC55A2F1D525C0085FEC5 /* HistoryRowView.swift in Sources */,
 				B9D08D302E520ED20074BFD5 /* FlutterEngineManager.swift in Sources */,
 				B9DEC5572F1BF4AC0085FEC5 /* DateExtension.swift in Sources */,
 				B9B00CD02E518DED00BCB306 /* imitateApp.swift in Sources */,
@@ -426,10 +442,12 @@
 				B9C191A72EFFDC2400AFE3C3 /* BaseHomeView.swift in Sources */,
 				B9C191A92EFFDC2A00AFE3C3 /* SceneDelegate.swift in Sources */,
 				B9C191C62EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */,
+				B9DEC55B2F1D538B0085FEC5 /* HistoryRowView.swift in Sources */,
 				B961A26B2F09A37900B2989C /* InputBalanceCategoryView.swift in Sources */,
 				B9C191AB2EFFDC2D00AFE3C3 /* imitateApp.swift in Sources */,
 				B9C191AF2EFFDC3300AFE3C3 /* FlutterEngineManager.swift in Sources */,
 				B9C191CF2F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */,
+				B9DEC55D2F1D53930085FEC5 /* DateExtension.swift in Sources */,
 				B9C191BA2EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */,
 				B9C191BE2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */,
 				B9C191C22EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */,
@@ -446,7 +464,9 @@
 				B9C191BB2EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */,
 				B9C191B62EFFDCD100AFE3C3 /* TopHomeView.swift in Sources */,
 				B9C191A82EFFDC2400AFE3C3 /* BaseHomeView.swift in Sources */,
+				B9DEC55E2F1D53930085FEC5 /* DateExtension.swift in Sources */,
 				B961A26C2F09A37900B2989C /* InputBalanceCategoryView.swift in Sources */,
+				B9DEC55C2F1D538C0085FEC5 /* HistoryRowView.swift in Sources */,
 				B9C191AE2EFFDC3000AFE3C3 /* LaunchView.swift in Sources */,
 				B961A2672F097AEB00B2989C /* InputBalanceSegmentView.swift in Sources */,
 				B9C191C32EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */,
