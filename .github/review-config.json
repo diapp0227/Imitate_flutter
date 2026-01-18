@@ -1,0 +1,50 @@
+{
+  "platforms": {
+    "flutter": {
+      "patterns": [
+        "project/Flutter/**/*.dart"
+      ],
+      "language": "Dart"
+    },
+    "android": {
+      "patterns": [
+        "project/Android/app/src/main/**/*.kt",
+        "project/Android/app/src/main/**/*.java"
+      ],
+      "language": "Kotlin/Java"
+    },
+    "ios": {
+      "patterns": [
+        "project/iOS/imitate/**/*.swift"
+      ],
+      "language": "Swift"
+    },
+    "documentation": {
+      "patterns": [
+        "document/**/*.md"
+      ],
+      "language": "Markdown"
+    }
+  },
+  "excludePatterns": [
+    "**/build/**",
+    "**/.*",
+    "**/*.pbxproj",
+    "**/*.xcworkspacedata",
+    "**/Pods/**",
+    "**/node_modules/**",
+    "**/.gradle/**",
+    "**/*.g.dart",
+    "**/*.freezed.dart"
+  ],
+  "reviewFocus": [
+    "SQL injection risks in Repository classes",
+    "MethodChannel contract consistency across platforms",
+    "Null safety violations",
+    "Input validation gaps",
+    "Cross-platform implementation consistency",
+    "Error handling patterns",
+    "Unused imports and code quality",
+    "Documentation accuracy"
+  ]
+}
