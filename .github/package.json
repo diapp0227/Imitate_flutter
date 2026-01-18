@@ -1,0 +1,11 @@
+{
+  "name": "claude-code-review",
+  "version": "1.0.0",
+  "description": "Automated PR code review using Claude API",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0",
+    "@octokit/rest": "^20.0.0"
+  }
+}
