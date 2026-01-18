@@ -24,16 +24,35 @@
         "document/**/*.md"
       ],
       "language": "Markdown"
+    },
+    "github": {
+      "patterns": [
+        ".github/**/*.yml",
+        ".github/**/*.yaml",
+        ".github/**/*.js",
+        ".github/**/*.json"
+      ],
+      "language": "GitHub Actions / JavaScript / JSON"
+    },
+    "config": {
+      "patterns": [
+        ".gitignore",
+        ".gitattributes",
+        "*.md"
+      ],
+      "language": "Configuration / Documentation"
     }
   },
   "excludePatterns": [
     "**/build/**",
-    "**/.*",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "**/.gradle/**",
+    "**/.dart_tool/**",
     "**/*.pbxproj",
     "**/*.xcworkspacedata",
     "**/Pods/**",
     "**/node_modules/**",
-    "**/.gradle/**",
     "**/*.g.dart",
     "**/*.freezed.dart"
   ],
