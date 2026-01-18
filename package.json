@@ -1,0 +1,21 @@
+{
+  "name": "imitate_flutter",
+  "version": "1.0.0",
+  "description": "![](https://img.shields.io/badge/2024.3.2-FF4c4c?&label=AndroidStudio) ![](https://img.shields.io/badge/15.3-4cFFFF?&label=Xcode)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/diapp0227/Imitate_flutter/issues"
+  },
+  "homepage": "https://github.com/diapp0227/Imitate_flutter#readme"
+}
