@@ -11,16 +11,38 @@ struct HistoryRowView: View {
     let title: String
     let date: String
     let amount: String
-    let amountColor: Color
-    let icon: String
+    let type: BalanceType
+    
+    enum BalanceType {
+        case income
+        case expenses
+        
+        var amountTextColor: Color {
+            switch self {
+            case .income:
+                return .green
+            case .expenses:
+                return .red
+            }
+        }
+        
+        var icon: String {
+            switch self {
+            case .income:
+                return "arrow.up"
+            case .expenses:
+                return "arrow.down"
+            }
+        }
+    }
 
     var body: some View {
         HStack {
             HStack(spacing: 12) {
-                Image(systemName: icon)
-                    .foregroundColor(amountColor)
+                Image(systemName: type.icon)
+                    .foregroundColor(type.amountTextColor)
                     .padding(8)
-                    .background(amountColor.opacity(0.15))
+                    .background(type.amountTextColor.opacity(0.15))
                     .clipShape(Circle())
 
                 VStack(alignment: .leading, spacing: 4) {
@@ -36,16 +58,13 @@ struct HistoryRowView: View {
 
             HStack(spacing: 8) {
                 Text(amount)
-                    .foregroundColor(amountColor)
+                    .foregroundColor(type.amountTextColor)
                     .fontWeight(.semibold)
-
-                Image(systemName: "trash")
-                    .foregroundColor(.gray)
             }
         }
     }
 }
 
 #Preview {
-    HistoryRowView(title: "", date: "", amount: "", amountColor: .red, icon: "")
+    HistoryRowView(title: "", date: "", amount: "", type: .income)
 }

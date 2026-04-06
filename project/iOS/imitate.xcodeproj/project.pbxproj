@@ -28,6 +28,9 @@
 		B9B00CE12E518DEE00BCB306 /* imitateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CE02E518DEE00BCB306 /* imitateTests.swift */; };
 		B9B00CEB2E518DEE00BCB306 /* imitateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CEA2E518DEE00BCB306 /* imitateUITests.swift */; };
 		B9B00CED2E518DEE00BCB306 /* imitateUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CEC2E518DEE00BCB306 /* imitateUITestsLaunchTests.swift */; };
+		B9C166622F26772400A3BEC5 /* BalanceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C166612F26772400A3BEC5 /* BalanceInfo.swift */; };
+		B9C166632F267E7500A3BEC5 /* BalanceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C166612F26772400A3BEC5 /* BalanceInfo.swift */; };
+		B9C166642F267E7600A3BEC5 /* BalanceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C166612F26772400A3BEC5 /* BalanceInfo.swift */; };
 		B9C191A42EFFDBD200AFE3C3 /* BaseHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191A32EFFDBD200AFE3C3 /* BaseHomeView.swift */; };
 		B9C191A52EFFDC2100AFE3C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */; };
 		B9C191A62EFFDC2100AFE3C3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */; };
@@ -122,6 +125,7 @@
 		B9B00CE62E518DEE00BCB306 /* imitateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = imitateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B00CEA2E518DEE00BCB306 /* imitateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imitateUITests.swift; sourceTree = "<group>"; };
 		B9B00CEC2E518DEE00BCB306 /* imitateUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imitateUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B9C166612F26772400A3BEC5 /* BalanceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceInfo.swift; sourceTree = "<group>"; };
 		B9C191A32EFFDBD200AFE3C3 /* BaseHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseHomeView.swift; sourceTree = "<group>"; };
 		B9C191B32EFFDCD100AFE3C3 /* TopHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopHomeView.swift; sourceTree = "<group>"; };
 		B9C191B82EFFDDB700AFE3C3 /* InputHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHomeView.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 				B9C191A32EFFDBD200AFE3C3 /* BaseHomeView.swift */,
 				B9C191B32EFFDCD100AFE3C3 /* TopHomeView.swift */,
 				B9C191B82EFFDDB700AFE3C3 /* InputHomeView.swift */,
+				B9C166612F26772400A3BEC5 /* BalanceInfo.swift */,
 				B9C191BC2EFFDE3000AFE3C3 /* GameHomeView.swift */,
 				B9C191C02EFFDE4E00AFE3C3 /* HistoryHomeView.swift */,
 				B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */,
@@ -420,6 +425,7 @@
 				B9C191A42EFFDBD200AFE3C3 /* BaseHomeView.swift in Sources */,
 				B9DEC55A2F1D525C0085FEC5 /* HistoryRowView.swift in Sources */,
 				B9D08D302E520ED20074BFD5 /* FlutterEngineManager.swift in Sources */,
+				B9C166622F26772400A3BEC5 /* BalanceInfo.swift in Sources */,
 				B9DEC5572F1BF4AC0085FEC5 /* DateExtension.swift in Sources */,
 				B9B00CD02E518DED00BCB306 /* imitateApp.swift in Sources */,
 				B9C191CA2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */,
@@ -445,6 +451,7 @@
 				B9DEC55B2F1D538B0085FEC5 /* HistoryRowView.swift in Sources */,
 				B961A26B2F09A37900B2989C /* InputBalanceCategoryView.swift in Sources */,
 				B9C191AB2EFFDC2D00AFE3C3 /* imitateApp.swift in Sources */,
+				B9C166632F267E7500A3BEC5 /* BalanceInfo.swift in Sources */,
 				B9C191AF2EFFDC3300AFE3C3 /* FlutterEngineManager.swift in Sources */,
 				B9C191CF2F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */,
 				B9DEC55D2F1D53930085FEC5 /* DateExtension.swift in Sources */,
@@ -477,6 +484,7 @@
 				B9B00CEB2E518DEE00BCB306 /* imitateUITests.swift in Sources */,
 				B9C191C72EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */,
 				B9C191BF2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */,
+				B9C166642F267E7600A3BEC5 /* BalanceInfo.swift in Sources */,
 				B9C191CC2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
