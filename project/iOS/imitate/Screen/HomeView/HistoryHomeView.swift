@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HistoryHomeView: View {
-    
+
     struct HistoryInfo: Identifiable {
         var id: Int
         let title: String
@@ -16,13 +16,13 @@ struct HistoryHomeView: View {
         let date: String
         let amount: String
     }
-    
-    @State private var list = [HistoryInfo]()
-    
+
+    @StateObject private var viewModel = HistoryHomeViewModel()
+
     var body: some View {
         VStack(spacing: 12) {
             Text("履歴")
-            List(list) { row in
+            List(viewModel.historyList) { row in
                 HistoryRowView(title: row.title,
                                date: row.date,
                                amount: row.amount,
@@ -35,49 +35,9 @@ struct HistoryHomeView: View {
         .shadow(color: .black.opacity(0.1), radius: 8)
         .padding()
         .onAppear() {
-            getHistoryInfoLists { getInfo in
-                self.list = getInfo
-            }
+            viewModel.loadHistory()
         }
     }
-    
-    func getHistoryInfoLists(completion: (([HistoryInfo]) ->Void)?) {
-        BalanceRecordRepository.shared.selectAll(onSuccess: { info in
-            guard let info, info.count >= 1 else {
-                return
-            }
-        
-            var list = [HistoryInfo]()
-            
-            info.enumerated().forEach { index, getInfo in
-                do {
-                    guard let balanceInfo = try BalanceRecordInfo.parse(dictionary: getInfo) else {
-                        return
-                    }
-                    
-                    if balanceInfo.isIncomeRecord {
-                        list.append(HistoryInfo(id: index,
-                                                title: balanceInfo.incomeCategory ?? "",
-                                                type: .income,
-                                                date: balanceInfo.date ?? "",
-                                                amount: "\(balanceInfo.amount ?? .zero)"))
-                    } else if balanceInfo.isExpenseRecord {
-                        list.append(HistoryInfo(id: index,
-                                                title: balanceInfo.expenseCategory ?? "",
-                                                type: .expenses,
-                                                date: balanceInfo.date ?? "",
-                                                amount: "\(balanceInfo.amount ?? .zero)"))
-                    }
-                } catch {
-                    print("\(error)")
-                }
-            }
-            completion?(list)
-        },
-                                                 onFailure: {
-        })
-    }
-    
 }
 
 #Preview {

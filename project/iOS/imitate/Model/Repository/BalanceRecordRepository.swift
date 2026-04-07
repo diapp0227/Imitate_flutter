@@ -7,8 +7,14 @@
 
 import Flutter
 
-class BalanceRecordRepository {
-    
+protocol BalanceRecordRepositoryProtocol {
+    func selectAll(onSuccess: @escaping (([[String: Any]]?) -> Void),
+                   onFailure: @escaping (() -> Void))
+    func insertRecord(arguments: [String: Any])
+}
+
+class BalanceRecordRepository: BalanceRecordRepositoryProtocol {
+
     static let shared = BalanceRecordRepository()
     
     func selectAll(onSuccess: @escaping (([[String: Any]]?) -> Void),
