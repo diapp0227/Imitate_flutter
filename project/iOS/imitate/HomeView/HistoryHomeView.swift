@@ -50,20 +50,26 @@ struct HistoryHomeView: View {
             var list = [HistoryInfo]()
             
             info.enumerated().forEach { index, getInfo in
-                let balanceInfo = BalanceInfo.parse(info: getInfo)
-                
-                if balanceInfo.isIncomeRecord {
-                    list.append(HistoryInfo(id: index,
-                                            title: balanceInfo.incomeCategory ?? "",
-                                            type: .income,
-                                            date: balanceInfo.date ?? "",
-                                            amount: "\(balanceInfo.amount ?? .zero)"))
-                } else if balanceInfo.isExpenseRecord {
-                    list.append(HistoryInfo(id: index,
-                                            title: balanceInfo.expenseCategory ?? "",
-                                            type: .expenses,
-                                            date: balanceInfo.date ?? "",
-                                            amount: "\(balanceInfo.amount ?? .zero)"))
+                do {
+                    guard let balanceInfo = try BalanceInfo.parse(dictionary: getInfo) else {
+                        return
+                    }
+                    
+                    if balanceInfo.isIncomeRecord {
+                        list.append(HistoryInfo(id: index,
+                                                title: balanceInfo.incomeCategory ?? "",
+                                                type: .income,
+                                                date: balanceInfo.date ?? "",
+                                                amount: "\(balanceInfo.amount ?? .zero)"))
+                    } else if balanceInfo.isExpenseRecord {
+                        list.append(HistoryInfo(id: index,
+                                                title: balanceInfo.expenseCategory ?? "",
+                                                type: .expenses,
+                                                date: balanceInfo.date ?? "",
+                                                amount: "\(balanceInfo.amount ?? .zero)"))
+                    }
+                } catch {
+                    print("\(error)")
                 }
             }
             completion?(list)

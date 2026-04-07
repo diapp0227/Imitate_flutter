@@ -7,36 +7,51 @@
 
 import Foundation
 
-struct BalanceInfo {
+struct BalanceInfo: Codable {
     /// 種類 ... 収入 or 支出
-    let type: String?
+    var type: String?
     /// 収入カテゴリ
-    let incomeCategory: String?
+    var incomeCategory: String?
     /// 支出カテゴリ
-    let expenseCategory: String?
+    var expenseCategory: String?
     /// 金額
-    let amount: Int?
+    var amount: Int?
     /// メモ
-    let memo: String?
+    var memo: String?
     /// 日付
-    let date: String?
+    var date: String?
     /// 入力した日付
-    let createdAt: String?
+    var createdAt: String?
     /// ゲームフラグ
-    let gameFlag: Bool?
+    var gameFlag: Int?
     
-    static func parse(info: [String: Any]) -> BalanceInfo {
-        return BalanceInfo(
-            type: info["type"] as? String,
-            incomeCategory: info["income_category"] as? String,
-            expenseCategory: info["expense_category"] as? String,
-            amount: info["amount"] as? Int,
-            memo: info["memo"] as? String,
-            date: info["date"] as? String,
-            createdAt: info["created_at"] as? String,
-            gameFlag: info["game_flag"] as? Bool)
+    enum CodingKeys: String, CodingKey {
+        case type
+        case incomeCategory = "income_category"
+        case expenseCategory = "expense_category"
+        case amount
+        case memo
+        case date
+        case createdAt = "created_at"
+        case gameFlag = "game_flag"
     }
-
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+        incomeCategory = try values.decodeIfPresent(String.self, forKey: .incomeCategory)
+        expenseCategory = try values.decodeIfPresent(String.self, forKey: .expenseCategory)
+        amount = try values.decodeIfPresent(Int.self, forKey: .amount)
+        memo = try values.decodeIfPresent(String.self, forKey: .memo)
+        date = try values.decodeIfPresent(String.self, forKey: .date)
+        createdAt = try values.decodeIfPresent(String.self, forKey: .createdAt)
+        gameFlag = try values.decodeIfPresent(Int.self, forKey: .gameFlag)
+    }
+    
+    static func parse(dictionary: [String: Any]) throws -> BalanceInfo? {
+        try dictionary.decode(self)
+    }
+    
     /// レコードの種類が収入か
     var isIncomeRecord: Bool {
         guard let incomeCategory, !incomeCategory.isEmpty else {
