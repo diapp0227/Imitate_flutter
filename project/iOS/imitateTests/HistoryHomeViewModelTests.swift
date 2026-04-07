@@ -37,13 +37,13 @@ final class HistoryHomeViewModelTests: XCTestCase {
     // MARK: - Test Cases
 
     /// 初期状態で historyList が空であることをテスト
-    func testInitialState_HistoryListIsEmpty() {
+    func test_初期状態でhistoryListが空である() {
         // Then
         XCTAssertTrue(viewModel.historyList.isEmpty, "初期状態では historyList は空であるべき")
     }
 
     /// loadHistory が成功した場合、historyList が更新されることをテスト
-    func testLoadHistory_Success_UpdatesHistoryList() async {
+    func test_loadHistoryが成功した場合_historyListが更新される() async {
         // Given
         let mockRecords: [[String: Any]] = [
             [
@@ -77,7 +77,7 @@ final class HistoryHomeViewModelTests: XCTestCase {
     }
 
     /// loadHistory が失敗した場合、historyList が空になることをテスト
-    func testLoadHistory_Failure_ClearsHistoryList() async {
+    func test_loadHistoryが失敗した場合_historyListが空になる() async {
         // Given
         mockRepository.shouldSucceed = false
 
@@ -97,7 +97,7 @@ final class HistoryHomeViewModelTests: XCTestCase {
     }
 
     /// loadHistory で空のレコードを受け取った場合、historyList が空になることをテスト
-    func testLoadHistory_EmptyRecords_ReturnsEmptyList() async {
+    func test_loadHistoryで空のレコードを受け取った場合_historyListが空になる() async {
         // Given
         mockRepository.mockRecords = []
         mockRepository.shouldSucceed = true
@@ -113,7 +113,7 @@ final class HistoryHomeViewModelTests: XCTestCase {
     }
 
     /// loadHistory で nil のレコードを受け取った場合、historyList が空になることをテスト
-    func testLoadHistory_NilRecords_ReturnsEmptyList() async {
+    func test_loadHistoryでnilのレコードを受け取った場合_historyListが空になる() async {
         // Given
         mockRepository.mockRecords = nil
         mockRepository.shouldSucceed = true
@@ -129,7 +129,7 @@ final class HistoryHomeViewModelTests: XCTestCase {
     }
 
     /// loadHistory が複数回呼ばれた場合、正しく動作することをテスト
-    func testLoadHistory_CalledMultipleTimes_UpdatesCorrectly() async {
+    func test_loadHistoryが複数回呼ばれた場合_正しく動作する() async {
         // Given - 1回目
         mockRepository.mockRecords = [
             [

@@ -30,7 +30,7 @@ final class HistoryInfoMapperTests: XCTestCase {
     // MARK: - Test Cases
 
     /// 空のレコードリストをマッピングした場合、空の配列を返すことをテスト
-    func testMap_EmptyRecords_ReturnsEmptyArray() {
+    func test_空のレコードリストをマッピングした場合_空の配列を返す() {
         // Given
         let emptyRecords: [[String: Any]]? = []
 
@@ -42,7 +42,7 @@ final class HistoryInfoMapperTests: XCTestCase {
     }
 
     /// nil のレコードリストをマッピングした場合、空の配列を返すことをテスト
-    func testMap_NilRecords_ReturnsEmptyArray() {
+    func test_nilのレコードリストをマッピングした場合_空の配列を返す() {
         // Given
         let nilRecords: [[String: Any]]? = nil
 
@@ -54,7 +54,7 @@ final class HistoryInfoMapperTests: XCTestCase {
     }
 
     /// 収入レコードを正しくマッピングできることをテスト
-    func testMap_IncomeRecord_MapsCorrectly() {
+    func test_収入レコードを正しくマッピングできる() {
         // Given
         let incomeRecord: [[String: Any]] = [
             [
@@ -81,7 +81,7 @@ final class HistoryInfoMapperTests: XCTestCase {
     }
 
     /// 支出レコードを正しくマッピングできることをテスト
-    func testMap_ExpenseRecord_MapsCorrectly() {
+    func test_支出レコードを正しくマッピングできる() {
         // Given
         let expenseRecord: [[String: Any]] = [
             [
@@ -108,7 +108,7 @@ final class HistoryInfoMapperTests: XCTestCase {
     }
 
     /// 複数のレコード（収入と支出の混在）を正しくマッピングできることをテスト
-    func testMap_MultipleRecords_MapsCorrectly() {
+    func test_複数のレコード_収入と支出の混在_を正しくマッピングできる() {
         // Given
         let mixedRecords: [[String: Any]] = [
             [
@@ -163,7 +163,7 @@ final class HistoryInfoMapperTests: XCTestCase {
     }
 
     /// 不正なレコード（パースエラー）はスキップされることをテスト
-    func testMap_InvalidRecord_IsSkipped() {
+    func test_不正なレコード_パースエラー_はスキップされる() {
         // Given
         let invalidRecords: [[String: Any]] = [
             [
@@ -193,7 +193,7 @@ final class HistoryInfoMapperTests: XCTestCase {
     }
 
     /// カテゴリが空のレコードはスキップされることをテスト
-    func testMap_EmptyCategoryRecord_IsSkipped() {
+    func test_カテゴリが空のレコードはスキップされる() {
         // Given
         let emptyCategoryRecords: [[String: Any]] = [
             [
@@ -219,7 +219,7 @@ final class HistoryInfoMapperTests: XCTestCase {
     }
 
     /// nil の値を持つフィールドがデフォルト値にフォールバックすることをテスト
-    func testMap_NilValues_UsesDefaultValues() {
+    func test_nilの値を持つフィールドがデフォルト値にフォールバックする() {
         // Given
         let recordWithNilValues: [[String: Any]] = [
             [
