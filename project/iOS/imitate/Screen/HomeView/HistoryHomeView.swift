@@ -51,7 +51,7 @@ struct HistoryHomeView: View {
             
             info.enumerated().forEach { index, getInfo in
                 do {
-                    guard let balanceInfo = try BalanceInfo.parse(dictionary: getInfo) else {
+                    guard let balanceInfo = try BalanceRecordInfo.parse(dictionary: getInfo) else {
                         return
                     }
                     

@@ -1,5 +1,5 @@
 //
-//  BalanceInfo.swift
+//  BalanceRecordInfo.swift
 //  imitate
 //
 //  Created by garigari0118 on 2026/01/26.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BalanceInfo: Codable {
+struct BalanceRecordInfo: Codable {
     /// 種類 ... 収入 or 支出
     var type: String?
     /// 収入カテゴリ
@@ -48,7 +48,7 @@ struct BalanceInfo: Codable {
         gameFlag = try values.decodeIfPresent(Int.self, forKey: .gameFlag)
     }
     
-    static func parse(dictionary: [String: Any]) throws -> BalanceInfo? {
+    static func parse(dictionary: [String: Any]) throws -> BalanceRecordInfo? {
         try dictionary.decode(self)
     }
     
