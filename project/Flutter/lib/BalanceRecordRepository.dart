@@ -25,6 +25,14 @@ class BalanceRecordRepository {
           final list = await selectAll();
           print('dart selectAll result: $list');
           return list;
+        case 'getMonthlyIncome':
+          final income = await getMonthlyIncome();
+          print('dart getMonthlyIncome result: $income');
+          return income;
+        case 'getMonthlyExpenses':
+          final expenses = await getMonthlyExpenses();
+          print('dart getMonthlyExpenses result: $expenses');
+          return expenses;
         default:
           throw PlatformException(code: 'Unimplemented');
       }
@@ -86,5 +94,47 @@ class BalanceRecordRepository {
     final db = await database;
     // print(await db.rawQuery('SELECT COUNT(*) FROM balanceRecords'));
     return await db.query('balanceRecords');
+  }
+
+  Future<int> getMonthlyIncome() async {
+    print('getMonthlyIncome');
+    final db = await database;
+    final now = DateTime.now();
+    final currentMonth = '${now.year}-${now.month.toString().padLeft(2, '0')}';
+
+    final records = await db.query(
+      'balanceRecords',
+      where: 'date LIKE ? AND type = ?',
+      whereArgs: ['$currentMonth%', '収入'],
+    );
+
+    int total = 0;
+    for (var record in records) {
+      final amount = record['amount'] as int? ?? 0;
+      total += amount;
+    }
+
+    return total;
+  }
+
+  Future<int> getMonthlyExpenses() async {
+    print('getMonthlyExpenses');
+    final db = await database;
+    final now = DateTime.now();
+    final currentMonth = '${now.year}-${now.month.toString().padLeft(2, '0')}';
+
+    final records = await db.query(
+      'balanceRecords',
+      where: 'date LIKE ? AND type = ?',
+      whereArgs: ['$currentMonth%', '支出'],
+    );
+
+    int total = 0;
+    for (var record in records) {
+      final amount = record['amount'] as int? ?? 0;
+      total += amount;
+    }
+
+    return total;
   }
 }

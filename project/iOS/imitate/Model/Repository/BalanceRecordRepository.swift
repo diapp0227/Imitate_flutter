@@ -11,6 +11,10 @@ protocol BalanceRecordRepositoryProtocol {
     func selectAll(onSuccess: @escaping (([[String: Any]]?) -> Void),
                    onFailure: @escaping (() -> Void))
     func insertRecord(arguments: [String: Any])
+    func getMonthlyIncome(onSuccess: @escaping ((Int) -> Void),
+                          onFailure: @escaping (() -> Void))
+    func getMonthlyExpenses(onSuccess: @escaping ((Int) -> Void),
+                            onFailure: @escaping (() -> Void))
 }
 
 class BalanceRecordRepository: BalanceRecordRepositoryProtocol {
@@ -38,5 +42,37 @@ class BalanceRecordRepository: BalanceRecordRepositoryProtocol {
     
     func insertRecord(arguments: [String: Any]) {
         FlutterEngineManager.shared.channel?.invokeMethod("insert", arguments: arguments)
+    }
+
+    func getMonthlyIncome(onSuccess: @escaping ((Int) -> Void),
+                          onFailure: @escaping (() -> Void)) {
+        FlutterEngineManager.shared.channel?.invokeMethod("getMonthlyIncome", arguments: nil) { result in
+
+            if let income = result as? Int {
+                onSuccess(income)
+            } else if let error = result as? FlutterError {
+                print("Error: \(error.message ?? "Unknown error")")
+                onFailure()
+            } else {
+                print("failed getMonthlyIncome")
+                onFailure()
+            }
+        }
+    }
+
+    func getMonthlyExpenses(onSuccess: @escaping ((Int) -> Void),
+                            onFailure: @escaping (() -> Void)) {
+        FlutterEngineManager.shared.channel?.invokeMethod("getMonthlyExpenses", arguments: nil) { result in
+
+            if let expenses = result as? Int {
+                onSuccess(expenses)
+            } else if let error = result as? FlutterError {
+                print("Error: \(error.message ?? "Unknown error")")
+                onFailure()
+            } else {
+                print("failed getMonthlyExpenses")
+                onFailure()
+            }
+        }
     }
 }

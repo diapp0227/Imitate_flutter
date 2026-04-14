@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct TopHomeView: View {
-    
+
+    @StateObject private var viewModel = TopHomeViewModel()
     @State private var showingSheetToInputHome = false
-    
+
     var body: some View {
         ZStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 8) {
-                    BalanceView(type: .income, balance: "200000")
-                    BalanceView(type: .expenses, balance: "200000")
+                    BalanceView(type: .income, balance: viewModel.monthlyIncome)
+                    BalanceView(type: .expenses, balance: viewModel.monthlyExpenses)
                 }
             }
             
@@ -45,6 +46,14 @@ struct TopHomeView: View {
                 InputHomeView()
             }
             .presentationDetents([.fraction(0.75), .large])
+        }
+        .onAppear {
+            viewModel.loadMonthlyBalance()
+        }
+        .onChange(of: showingSheetToInputHome) { oldValue, newValue in
+            if !newValue {
+                viewModel.loadMonthlyBalance()
+            }
         }
     }
     
