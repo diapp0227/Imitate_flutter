@@ -1,0 +1,2 @@
+/Users/garigari0118/Desktop/work/Flutter/Imitate_flutter/project/Flutter/.android/Flutter/.cxx/profile/26v20553/arm64-v8a/CMakeFiles/edit_cache.dir
+/Users/garigari0118/Desktop/work/Flutter/Imitate_flutter/project/Flutter/.android/Flutter/.cxx/profile/26v20553/arm64-v8a/CMakeFiles/rebuild_cache.dir
