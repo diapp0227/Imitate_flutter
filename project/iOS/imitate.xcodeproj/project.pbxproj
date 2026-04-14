@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B9329E062F8ED5E7000797AB /* TopHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9329E052F8ED5E7000797AB /* TopHomeViewModel.swift */; };
+		B9329E072F8ED5E7000797AB /* TopHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9329E052F8ED5E7000797AB /* TopHomeViewModel.swift */; };
+		B9329E082F8ED5E7000797AB /* TopHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9329E052F8ED5E7000797AB /* TopHomeViewModel.swift */; };
 		B93EE8292ED4AD6D00C42937 /* App.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93EE8272ED4AD6D00C42937 /* App.xcframework */; };
 		B93EE82A2ED4AD6D00C42937 /* Flutter.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = B93EE8282ED4AD6D00C42937 /* Flutter.xcframework */; };
 		B95E7F5B2F8558C10071D91A /* HistoryHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95E7F592F8558C10071D91A /* HistoryHomeViewModel.swift */; };
@@ -118,6 +121,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B9329E052F8ED5E7000797AB /* TopHomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopHomeViewModel.swift; sourceTree = "<group>"; };
 		B93EE8272ED4AD6D00C42937 /* App.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = App.xcframework; path = ../../Flutter/build/ios/framework/Debug/App.xcframework; sourceTree = "<group>"; };
 		B93EE8282ED4AD6D00C42937 /* Flutter.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:S8QB4VV633:FLUTTER.IO LLC"; lastKnownFileType = wrapper.xcframework; name = Flutter.xcframework; path = ../../Flutter/build/ios/framework/Debug/Flutter.xcframework; sourceTree = "<group>"; };
 		B95E7F592F8558C10071D91A /* HistoryHomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryHomeViewModel.swift; sourceTree = "<group>"; };
@@ -187,6 +191,7 @@
 		B95E7F572F8548430071D91A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				B9329E052F8ED5E7000797AB /* TopHomeViewModel.swift */,
 				B95E7F592F8558C10071D91A /* HistoryHomeViewModel.swift */,
 			);
 			path = ViewModel;
@@ -501,6 +506,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9C191C12EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */,
+				B9329E062F8ED5E7000797AB /* TopHomeViewModel.swift in Sources */,
 				B96CBAAB2E51BF3A00DB2E48 /* AppDelegate.swift in Sources */,
 				B9C191B42EFFDCD100AFE3C3 /* TopHomeView.swift in Sources */,
 				B9C191CE2F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */,
@@ -539,6 +545,7 @@
 				B9C191A92EFFDC2A00AFE3C3 /* SceneDelegate.swift in Sources */,
 				B9E0D79B2F85344B00CF247C /* DictionaryExtension.swift in Sources */,
 				B9C191C62EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */,
+				B9329E072F8ED5E7000797AB /* TopHomeViewModel.swift in Sources */,
 				B9DEC55B2F1D538B0085FEC5 /* HistoryRowView.swift in Sources */,
 				B961A26B2F09A37900B2989C /* InputBalanceCategoryView.swift in Sources */,
 				B9C191AB2EFFDC2D00AFE3C3 /* imitateApp.swift in Sources */,
@@ -560,6 +567,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B9C191AA2EFFDC2A00AFE3C3 /* SceneDelegate.swift in Sources */,
+				B9329E082F8ED5E7000797AB /* TopHomeViewModel.swift in Sources */,
 				B9C191AC2EFFDC2D00AFE3C3 /* imitateApp.swift in Sources */,
 				B95E7F602F8558C10071D91A /* HistoryInfoMapper.swift in Sources */,
 				B9C191BB2EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */,
