@@ -149,11 +149,11 @@ struct BalanceGraphView: View {
         ZStack(alignment: .topLeading) {
             ForEach(mondays, id: \.self) { monday in
                 let day = Calendar.current.component(.day, from: monday)
-                Text("\(day)")
+                Text("\(month)/\(day)")
                     .font(.caption2)
                     .foregroundColor(.secondary)
                     .offset(
-                        x: xPosition(day: day, plotWidth: plotWidth) - 8,
+                        x: xPosition(day: day, plotWidth: plotWidth) - 10,
                         y: graphHeight + 4
                     )
             }
