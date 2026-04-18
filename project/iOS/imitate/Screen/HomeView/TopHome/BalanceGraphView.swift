@@ -20,7 +20,6 @@ struct BalanceGraphView: View {
     let dailyBalances: [DailyBalance]
 
     private let graphHeight: CGFloat = 220
-    private let yAxisWidth: CGFloat = 64
     private let xAxisHeight: CGFloat = 24
     private let yDivisions: Int = 5
 
@@ -80,33 +79,17 @@ struct BalanceGraphView: View {
     }
 
     private var graphArea: some View {
-        HStack(alignment: .top, spacing: 0) {
-            yAxisLabels
-            GeometryReader { geo in
-                let plotWidth = geo.size.width
-                ZStack(alignment: .topLeading) {
-                    gridLines(plotWidth: plotWidth)
-                    incomeLine(plotWidth: plotWidth)
-                    expensesLine(plotWidth: plotWidth)
-                    xAxisLabels(plotWidth: plotWidth)
-                }
+        GeometryReader { geo in
+            let plotWidth = geo.size.width
+            ZStack(alignment: .topLeading) {
+                gridLines(plotWidth: plotWidth)
+                incomeLine(plotWidth: plotWidth)
+                expensesLine(plotWidth: plotWidth)
+                lastDayLabels(plotWidth: plotWidth)
+                xAxisLabels(plotWidth: plotWidth)
             }
-            .frame(height: graphHeight + xAxisHeight)
         }
-    }
-
-    private var yAxisLabels: some View {
-        VStack(alignment: .trailing, spacing: 0) {
-            ForEach((0...yDivisions).reversed(), id: \.self) { i in
-                let value = yTickInterval * Double(i)
-                Text(formatAmount(value))
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-                    .frame(height: graphHeight / CGFloat(yDivisions))
-                    .frame(width: yAxisWidth, alignment: .trailing)
-            }
-            Spacer().frame(height: xAxisHeight)
-        }
+        .frame(height: graphHeight + xAxisHeight)
     }
 
     private func gridLines(plotWidth: CGFloat) -> some View {
@@ -145,6 +128,23 @@ struct BalanceGraphView: View {
         }
     }
 
+    private func lastDayLabels(plotWidth: CGFloat) -> some View {
+        let lastIncome = dailyBalances.last?.cumulativeIncome ?? 0
+        let lastExpenses = dailyBalances.last?.cumulativeExpenses ?? 0
+        let x = xPosition(day: daysInMonth, plotWidth: plotWidth)
+
+        return ZStack(alignment: .topLeading) {
+            Text(formatAmount(lastIncome))
+                .font(.caption2)
+                .foregroundColor(.blue)
+                .offset(x: x - 30, y: yPosition(value: lastIncome) - 16)
+            Text(formatAmount(lastExpenses))
+                .font(.caption2)
+                .foregroundColor(.red)
+                .offset(x: x - 30, y: yPosition(value: lastExpenses) - 16)
+        }
+    }
+
     private func xAxisLabels(plotWidth: CGFloat) -> some View {
         ZStack(alignment: .topLeading) {
             ForEach(mondays, id: \.self) { monday in
@@ -172,10 +172,9 @@ struct BalanceGraphView: View {
     }
 
     private func formatAmount(_ value: Double) -> String {
-        if value >= 10_000 {
-            return String(format: "%.0f万", value / 10_000)
-        }
-        return String(format: "%.0f", value)
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter.string(from: NSNumber(value: value)) ?? "\(Int(value))"
     }
 
     static var dummyPreview: BalanceGraphView {
