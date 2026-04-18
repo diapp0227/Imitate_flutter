@@ -13,7 +13,36 @@ struct DailyBalance {
     let cumulativeExpenses: Double
 }
 
-struct BalanceGraphView: View {
+// MARK: - ① Header
+
+struct BalanceGraphHeaderView: View {
+
+    let year: Int
+    let month: Int
+
+    var body: some View {
+        HStack {
+            Button(action: {}) {
+                Image(systemName: "chevron.left")
+                    .font(.headline)
+            }
+            Spacer()
+            Text("\(String(year))年\(String(month))月")
+                .font(.headline)
+                .fontWeight(.semibold)
+            Spacer()
+            Button(action: {}) {
+                Image(systemName: "chevron.right")
+                    .font(.headline)
+            }
+        }
+        .padding(.bottom, 8)
+    }
+}
+
+// MARK: - ② Chart
+
+struct BalanceGraphChartView: View {
 
     let year: Int
     let month: Int
@@ -51,24 +80,6 @@ struct BalanceGraphView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            monthHeader
-            graphArea
-        }
-        .padding(.horizontal)
-    }
-
-    private var monthHeader: some View {
-        HStack {
-            Text("\(String(year))年\(String(month))月")
-                .font(.headline)
-                .fontWeight(.semibold)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.bottom, 8)
-    }
-
-    private var graphArea: some View {
         GeometryReader { geo in
             let plotWidth = geo.size.width
             ZStack(alignment: .topLeading) {
@@ -164,6 +175,23 @@ struct BalanceGraphView: View {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         return formatter.string(from: NSNumber(value: value)) ?? "\(Int(value))"
+    }
+}
+
+// MARK: - ③ Container
+
+struct BalanceGraphView: View {
+
+    let year: Int
+    let month: Int
+    let dailyBalances: [DailyBalance]
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            BalanceGraphHeaderView(year: year, month: month)
+            BalanceGraphChartView(year: year, month: month, dailyBalances: dailyBalances)
+        }
+        .padding(.horizontal)
     }
 
     static var dummyPreview: BalanceGraphView {
