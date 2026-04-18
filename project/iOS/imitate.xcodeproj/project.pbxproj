@@ -73,6 +73,9 @@
 		B9C191CA2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */; };
 		B9C191CB2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */; };
 		B9C191CC2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */; };
+		B9C191D12F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191D02F0A000000AFE3C3 /* BalanceGraphView.swift */; };
+		B9C191D22F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191D02F0A000000AFE3C3 /* BalanceGraphView.swift */; };
+		B9C191D32F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191D02F0A000000AFE3C3 /* BalanceGraphView.swift */; };
 		B9C191CE2F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */; };
 		B9C191CF2F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */; };
 		B9C191D02F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */; };
@@ -152,6 +155,7 @@
 		B9C191C02EFFDE4E00AFE3C3 /* HistoryHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHomeView.swift; sourceTree = "<group>"; };
 		B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHomeView.swift; sourceTree = "<group>"; };
 		B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
+		B9C191D02F0A000000AFE3C3 /* BalanceGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceGraphView.swift; sourceTree = "<group>"; };
 		B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceRecordRepository.swift; sourceTree = "<group>"; };
 		B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterEngineManager.swift; sourceTree = "<group>"; };
 		B9DEC5562F1BF4AC0085FEC5 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
@@ -300,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */,
+				B9C191D02F0A000000AFE3C3 /* BalanceGraphView.swift */,
 			);
 			path = TopHome;
 			sourceTree = "<group>";
@@ -522,6 +527,7 @@
 				B9B00CD02E518DED00BCB306 /* imitateApp.swift in Sources */,
 				B95E7F5E2F8558C10071D91A /* HistoryInfoMapper.swift in Sources */,
 				B9C191CA2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */,
+				B9C191D12F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */,
 				B96CBAAF2E51BF7800DB2E48 /* SceneDelegate.swift in Sources */,
 				B9E0D79A2F85344B00CF247C /* DictionaryExtension.swift in Sources */,
 				B961A2652F097AEB00B2989C /* InputBalanceSegmentView.swift in Sources */,
@@ -559,6 +565,7 @@
 				B95E7F5C2F8558C10071D91A /* HistoryHomeViewModel.swift in Sources */,
 				B9C191C22EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */,
 				B9C191CB2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */,
+				B9C191D22F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,6 +597,7 @@
 				B9C166642F267E7600A3BEC5 /* BalanceRecordInfo.swift in Sources */,
 				B95E7F5D2F8558C10071D91A /* HistoryHomeViewModel.swift in Sources */,
 				B9C191CC2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */,
+				B9C191D32F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

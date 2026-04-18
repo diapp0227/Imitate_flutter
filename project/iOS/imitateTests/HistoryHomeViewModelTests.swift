@@ -179,6 +179,14 @@ final class HistoryHomeViewModelTests: XCTestCase {
 
 /// テスト用のモック BalanceRecordRepository
 class MockBalanceRecordRepository: BalanceRecordRepositoryProtocol {
+    func getMonthlyIncome(onSuccess: @escaping ((Int) -> Void), onFailure: @escaping (() -> Void)) {
+        // TODO: 別途テスト作成
+    }
+    
+    func getMonthlyExpenses(onSuccess: @escaping ((Int) -> Void), onFailure: @escaping (() -> Void)) {
+        // TODO: 別途テスト作成
+    }
+    
 
     var mockRecords: [[String: Any]]? = []
     var shouldSucceed: Bool = true
