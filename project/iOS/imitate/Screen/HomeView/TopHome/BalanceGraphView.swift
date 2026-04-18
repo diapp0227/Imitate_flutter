@@ -177,19 +177,23 @@ struct BalanceGraphView: View {
         }
         return String(format: "%.0f", value)
     }
+
+    static var dummyPreview: BalanceGraphView {
+        let calendar = Calendar.current
+        let today = Date()
+        let dummies: [DailyBalance] = (1...30).map { day in
+            let components = DateComponents(year: 2026, month: 4, day: day)
+            let date = calendar.date(from: components) ?? today
+            return DailyBalance(
+                date: date,
+                cumulativeIncome: Double(day) * 1_500,
+                cumulativeExpenses: Double(day) * 900
+            )
+        }
+        return BalanceGraphView(year: 2026, month: 4, dailyBalances: dummies)
+    }
 }
 
 #Preview {
-    let calendar = Calendar.current
-    let today = Date()
-    let dummies: [DailyBalance] = (1...30).map { day in
-        var components = DateComponents(year: 2026, month: 4, day: day)
-        let date = calendar.date(from: components) ?? today
-        return DailyBalance(
-            date: date,
-            cumulativeIncome: Double(day) * 1_500,
-            cumulativeExpenses: Double(day) * 900
-        )
-    }
-    BalanceGraphView(year: 2026, month: 4, dailyBalances: dummies)
+    BalanceGraphView.dummyPreview
 }
