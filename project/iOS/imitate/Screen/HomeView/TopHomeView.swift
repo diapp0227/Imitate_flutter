@@ -18,6 +18,8 @@ struct TopHomeView: View {
                 VStack(alignment: .leading, spacing: 8) {
                     BalanceView(type: .income, balance: viewModel.monthlyIncome)
                     BalanceView(type: .expenses, balance: viewModel.monthlyExpenses)
+                    BalanceGraphView.dummyPreview
+                        .padding(.vertical, 8)
                 }
             }
             
