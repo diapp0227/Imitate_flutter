@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Charts
 
 struct DailyBalance {
     let date: Date
@@ -27,9 +28,11 @@ struct BalanceGraphHeaderView: View {
                     .font(.headline)
             }
             Spacer()
-            Text("\(String(year))年\(String(month))月")
-                .font(.headline)
-                .fontWeight(.semibold)
+            Button(action: {}) {
+                Text("\(String(year))年\(String(month))月")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+            }
             Spacer()
             Button(action: {}) {
                 Image(systemName: "chevron.right")
@@ -49,22 +52,6 @@ struct BalanceGraphChartView: View {
     let dailyBalances: [DailyBalance]
 
     private let graphHeight: CGFloat = 220
-    private let xAxisHeight: CGFloat = 24
-    private let yDivisions: Int = 5
-
-    private var maxValue: Double {
-        let maxIncome = dailyBalances.map { $0.cumulativeIncome }.max() ?? 0
-        let maxExpenses = dailyBalances.map { $0.cumulativeExpenses }.max() ?? 0
-        return max(maxIncome, maxExpenses, 1)
-    }
-
-    private var yTickInterval: Double {
-        (maxValue / Double(yDivisions)).rounded(.up)
-    }
-
-    private var yAxisMax: Double {
-        yTickInterval * Double(yDivisions)
-    }
 
     private var labelDays: [Int] {
         [1, 5, 10, 15, 20, 25, daysInMonth]
@@ -80,95 +67,62 @@ struct BalanceGraphChartView: View {
     }
 
     var body: some View {
-        GeometryReader { geo in
-            let plotWidth = geo.size.width
-            ZStack(alignment: .topLeading) {
-                gridLines(plotWidth: plotWidth)
-                incomeLine(plotWidth: plotWidth)
-                expensesLine(plotWidth: plotWidth)
-                lastDayLabels(plotWidth: plotWidth)
-                xAxisLabels(plotWidth: plotWidth)
+        Chart {
+            ForEach(Array(dailyBalances.enumerated()), id: \.offset) { index, balance in
+                LineMark(
+                    x: .value("日付", index + 1),
+                    y: .value("金額", balance.cumulativeIncome),
+                    series: .value("種別", "収入")
+                )
+                .foregroundStyle(.blue)
+
+                LineMark(
+                    x: .value("日付", index + 1),
+                    y: .value("金額", balance.cumulativeExpenses),
+                    series: .value("種別", "支出")
+                )
+                .foregroundStyle(.red)
             }
-        }
-        .frame(height: graphHeight + xAxisHeight)
-    }
 
-    private func gridLines(plotWidth: CGFloat) -> some View {
-        VStack(alignment: .leading, spacing: 0) {
-            ForEach((0...yDivisions).reversed(), id: \.self) { _ in
-                Rectangle()
-                    .fill(Color.secondary.opacity(0.2))
-                    .frame(width: plotWidth, height: 0.5)
-                    .frame(height: graphHeight / CGFloat(yDivisions))
-            }
-        }
-    }
+            if let last = dailyBalances.last {
+                PointMark(
+                    x: .value("日付", dailyBalances.count),
+                    y: .value("金額", last.cumulativeIncome)
+                )
+                .foregroundStyle(.clear)
+                .annotation(position: .topLeading) {
+                    Text(formatAmount(last.cumulativeIncome))
+                        .font(.caption2)
+                        .foregroundColor(.blue)
+                }
 
-    private func incomeLine(plotWidth: CGFloat) -> some View {
-        linePath(values: dailyBalances.map { $0.cumulativeIncome }, plotWidth: plotWidth)
-            .stroke(Color.blue, lineWidth: 2)
-    }
-
-    private func expensesLine(plotWidth: CGFloat) -> some View {
-        linePath(values: dailyBalances.map { $0.cumulativeExpenses }, plotWidth: plotWidth)
-            .stroke(Color.red, lineWidth: 2)
-    }
-
-    private func linePath(values: [Double], plotWidth: CGFloat) -> Path {
-        guard !values.isEmpty else { return Path() }
-        return Path { path in
-            for (index, value) in values.enumerated() {
-                let x = xPosition(day: index + 1, plotWidth: plotWidth)
-                let y = yPosition(value: value)
-                if index == 0 {
-                    path.move(to: CGPoint(x: x, y: y))
-                } else {
-                    path.addLine(to: CGPoint(x: x, y: y))
+                PointMark(
+                    x: .value("日付", dailyBalances.count),
+                    y: .value("金額", last.cumulativeExpenses)
+                )
+                .foregroundStyle(.clear)
+                .annotation(position: .topLeading) {
+                    Text(formatAmount(last.cumulativeExpenses))
+                        .font(.caption2)
+                        .foregroundColor(.red)
                 }
             }
         }
-    }
-
-    private func lastDayLabels(plotWidth: CGFloat) -> some View {
-        let lastIncome = dailyBalances.last?.cumulativeIncome ?? 0
-        let lastExpenses = dailyBalances.last?.cumulativeExpenses ?? 0
-        let x = xPosition(day: daysInMonth, plotWidth: plotWidth)
-
-        return ZStack(alignment: .topLeading) {
-            Text(formatAmount(lastIncome))
-                .font(.caption2)
-                .foregroundColor(.blue)
-                .offset(x: x - 30, y: yPosition(value: lastIncome) - 16)
-            Text(formatAmount(lastExpenses))
-                .font(.caption2)
-                .foregroundColor(.red)
-                .offset(x: x - 30, y: yPosition(value: lastExpenses) - 16)
-        }
-    }
-
-    private func xAxisLabels(plotWidth: CGFloat) -> some View {
-        ZStack(alignment: .topLeading) {
-            ForEach(labelDays, id: \.self) { day in
-                Text("\(month)/\(day)")
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-                    .offset(
-                        x: xPosition(day: day, plotWidth: plotWidth) - 10,
-                        y: graphHeight + 4
-                    )
+        .chartXScale(domain: 1...daysInMonth)
+        .chartXAxis {
+            AxisMarks(values: labelDays) { value in
+                AxisGridLine()
+                AxisValueLabel {
+                    if let day = value.as(Int.self) {
+                        Text("\(month)/\(day)")
+                            .font(.caption2)
+                    }
+                }
             }
         }
-        .frame(width: plotWidth, height: graphHeight + xAxisHeight, alignment: .topLeading)
-    }
-
-    private func xPosition(day: Int, plotWidth: CGFloat) -> CGFloat {
-        let ratio = CGFloat(day - 1) / CGFloat(max(daysInMonth - 1, 1))
-        return ratio * plotWidth
-    }
-
-    private func yPosition(value: Double) -> CGFloat {
-        let ratio = CGFloat(value / yAxisMax)
-        return graphHeight * (1 - ratio)
+        .chartYAxis(.hidden)
+        .chartLegend(.hidden)
+        .frame(height: graphHeight)
     }
 
     private func formatAmount(_ value: Double) -> String {
@@ -190,6 +144,7 @@ struct BalanceGraphView: View {
         VStack(alignment: .leading, spacing: 0) {
             BalanceGraphHeaderView(year: year, month: month)
             BalanceGraphChartView(year: year, month: month, dailyBalances: dailyBalances)
+                .padding(.horizontal, 4)
         }
         .padding(.horizontal)
     }
