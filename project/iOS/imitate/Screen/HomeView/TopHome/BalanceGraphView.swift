@@ -71,7 +71,7 @@ struct BalanceGraphView: View {
 
     private var monthHeader: some View {
         HStack {
-            Text("\(year)年\(month)月")
+            Text("\(String(year))年\(String(month))月")
                 .font(.headline)
                 .fontWeight(.semibold)
         }
