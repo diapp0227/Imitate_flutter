@@ -37,18 +37,8 @@ struct BalanceGraphView: View {
         yTickInterval * Double(yDivisions)
     }
 
-    private var mondays: [Date] {
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.locale = Locale(identifier: "ja_JP")
-        var components = DateComponents(year: year, month: month, day: 1)
-        guard let firstDay = calendar.date(from: components),
-              let range = calendar.range(of: .day, in: .month, for: firstDay) else { return [] }
-
-        return range.compactMap { day -> Date? in
-            components.day = day
-            guard let date = calendar.date(from: components) else { return nil }
-            return calendar.component(.weekday, from: date) == 2 ? date : nil
-        }
+    private var labelDays: [Int] {
+        [1, 5, 10, 15, 20, 25, daysInMonth]
     }
 
     private var daysInMonth: Int {
@@ -147,8 +137,7 @@ struct BalanceGraphView: View {
 
     private func xAxisLabels(plotWidth: CGFloat) -> some View {
         ZStack(alignment: .topLeading) {
-            ForEach(mondays, id: \.self) { monday in
-                let day = Calendar.current.component(.day, from: monday)
+            ForEach(labelDays, id: \.self) { day in
                 Text("\(month)/\(day)")
                     .font(.caption2)
                     .foregroundColor(.secondary)
