@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:intl/intl.dart';
 
 class BalanceRecordRepository {
   static const platform = MethodChannel('BalanceRecordRepository');
@@ -107,7 +108,7 @@ class BalanceRecordRepository {
     print('getMonthlyIncome');
     final db = await database;
     final now = DateTime.now();
-    final currentMonth = '${now.year}-${now.month.toString().padLeft(2, '0')}';
+    final currentMonth = DateFormat('yyyy-MM').format(now);
 
     final records = await db.query(
       'balanceRecords',
@@ -127,7 +128,7 @@ class BalanceRecordRepository {
   Future<List<Map<String, dynamic>>> getDailyBalanceData(int year, int month) async {
     print('getDailyBalanceData: $year-$month');
     final db = await database;
-    final monthStr = '$year-${month.toString().padLeft(2, '0')}';
+    final monthStr = DateFormat('yyyy-MM').format(DateTime(year, month));
 
     final records = await db.query(
       'balanceRecords',
@@ -143,7 +144,7 @@ class BalanceRecordRepository {
     final List<Map<String, dynamic>> result = [];
 
     for (int day = 1; day <= daysInMonth; day++) {
-      final dayStr = '$monthStr-${day.toString().padLeft(2, '0')}';
+      final dayStr = DateFormat('yyyy-MM-dd').format(DateTime(year, month, day));
 
       for (var record in records) {
         if (record['date'] == dayStr) {
@@ -170,7 +171,7 @@ class BalanceRecordRepository {
     print('getMonthlyExpenses');
     final db = await database;
     final now = DateTime.now();
-    final currentMonth = '${now.year}-${now.month.toString().padLeft(2, '0')}';
+    final currentMonth = DateFormat('yyyy-MM').format(now);
 
     final records = await db.query(
       'balanceRecords',
