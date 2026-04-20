@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
+import 'package:intl/intl.dart';
 
 class BalanceRecordRepository {
   static const platform = MethodChannel('BalanceRecordRepository');
@@ -33,6 +34,17 @@ class BalanceRecordRepository {
           final expenses = await getMonthlyExpenses();
           print('dart getMonthlyExpenses result: $expenses');
           return expenses;
+        case 'getDailyBalanceData':
+          final args = Map<String, dynamic>.from(call.arguments);
+          final year = args['year'] as int;
+          final month = args['month'] as int;
+          final dailyData = await getDailyBalanceData(year, month);
+          print('dart getDailyBalanceData result: $dailyData');
+          return dailyData;
+        case 'getAvailableYearMonths':
+          final yearMonths = await getAvailableYearMonths();
+          print('dart getAvailableYearMonths result: $yearMonths');
+          return yearMonths;
         default:
           throw PlatformException(code: 'Unimplemented');
       }
@@ -100,7 +112,7 @@ class BalanceRecordRepository {
     print('getMonthlyIncome');
     final db = await database;
     final now = DateTime.now();
-    final currentMonth = '${now.year}-${now.month.toString().padLeft(2, '0')}';
+    final currentMonth = DateFormat('yyyy-MM').format(now);
 
     final records = await db.query(
       'balanceRecords',
@@ -117,11 +129,62 @@ class BalanceRecordRepository {
     return total;
   }
 
+  Future<List<Map<String, dynamic>>> getDailyBalanceData(int year, int month) async {
+    print('getDailyBalanceData: $year-$month');
+    final db = await database;
+    final monthStr = DateFormat('yyyy-MM').format(DateTime(year, month));
+
+    final records = await db.query(
+      'balanceRecords',
+      where: 'date LIKE ?',
+      whereArgs: ['$monthStr%'],
+      orderBy: 'date ASC',
+    );
+
+    final daysInMonth = DateTime(year, month + 1, 0).day;
+    int cumulativeIncome = 0;
+    int cumulativeExpenses = 0;
+
+    final List<Map<String, dynamic>> result = [];
+
+    for (int day = 1; day <= daysInMonth; day++) {
+      final dayStr = DateFormat('yyyy-MM-dd').format(DateTime(year, month, day));
+
+      for (var record in records) {
+        if (record['date'] == dayStr) {
+          final amount = record['amount'] as int? ?? 0;
+          if (record['type'] == '収入') {
+            cumulativeIncome += amount;
+          } else if (record['type'] == '支出') {
+            cumulativeExpenses += amount;
+          }
+        }
+      }
+
+      result.add({
+        'date': dayStr,
+        'cumulativeIncome': cumulativeIncome,
+        'cumulativeExpenses': cumulativeExpenses,
+      });
+    }
+
+    return result;
+  }
+
+  Future<List<String>> getAvailableYearMonths() async {
+    print('getAvailableYearMonths');
+    final db = await database;
+    final result = await db.rawQuery(
+      'SELECT DISTINCT substr(date, 1, 7) as yearMonth FROM balanceRecords ORDER BY yearMonth ASC',
+    );
+    return result.map((row) => row['yearMonth'] as String).toList();
+  }
+
   Future<int> getMonthlyExpenses() async {
     print('getMonthlyExpenses');
     final db = await database;
     final now = DateTime.now();
-    final currentMonth = '${now.year}-${now.month.toString().padLeft(2, '0')}';
+    final currentMonth = DateFormat('yyyy-MM').format(now);
 
     final records = await db.query(
       'balanceRecords',

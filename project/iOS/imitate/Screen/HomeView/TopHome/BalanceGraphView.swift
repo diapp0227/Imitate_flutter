@@ -14,136 +14,40 @@ struct DailyBalance {
     let cumulativeExpenses: Double
 }
 
-// MARK: - ① Header
-
-struct BalanceGraphHeaderView: View {
-
-    let year: Int
-    let month: Int
-
-    var body: some View {
-        HStack {
-            Button(action: {}) {
-                Image(systemName: "chevron.left")
-                    .font(.headline)
-            }
-            Spacer()
-            Button(action: {}) {
-                Text("\(String(year))年\(String(month))月")
-                    .font(.headline)
-                    .fontWeight(.semibold)
-            }
-            Spacer()
-            Button(action: {}) {
-                Image(systemName: "chevron.right")
-                    .font(.headline)
-            }
-        }
-        .padding(.bottom, 8)
-    }
-}
-
-// MARK: - ② Chart
-
-struct BalanceGraphChartView: View {
-
-    let year: Int
-    let month: Int
-    let dailyBalances: [DailyBalance]
-
-    private let graphHeight: CGFloat = 220
-
-    private var labelDays: [Int] {
-        [1, 5, 10, 15, 20, 25, daysInMonth]
-    }
-
-    private var daysInMonth: Int {
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.locale = Locale(identifier: "ja_JP")
-        let components = DateComponents(year: year, month: month, day: 1)
-        guard let firstDay = calendar.date(from: components),
-              let range = calendar.range(of: .day, in: .month, for: firstDay) else { return 30 }
-        return range.count
-    }
-
-    var body: some View {
-        Chart {
-            ForEach(Array(dailyBalances.enumerated()), id: \.offset) { index, balance in
-                LineMark(
-                    x: .value("日付", index + 1),
-                    y: .value("金額", balance.cumulativeIncome),
-                    series: .value("種別", "収入")
-                )
-                .foregroundStyle(.blue)
-
-                LineMark(
-                    x: .value("日付", index + 1),
-                    y: .value("金額", balance.cumulativeExpenses),
-                    series: .value("種別", "支出")
-                )
-                .foregroundStyle(.red)
-            }
-
-            if let last = dailyBalances.last {
-                PointMark(
-                    x: .value("日付", dailyBalances.count),
-                    y: .value("金額", last.cumulativeIncome)
-                )
-                .foregroundStyle(.clear)
-                .annotation(position: .topLeading) {
-                    Text(formatAmount(last.cumulativeIncome))
-                        .font(.caption2)
-                        .foregroundColor(.blue)
-                }
-
-                PointMark(
-                    x: .value("日付", dailyBalances.count),
-                    y: .value("金額", last.cumulativeExpenses)
-                )
-                .foregroundStyle(.clear)
-                .annotation(position: .topLeading) {
-                    Text(formatAmount(last.cumulativeExpenses))
-                        .font(.caption2)
-                        .foregroundColor(.red)
-                }
-            }
-        }
-        .chartXScale(domain: 1...daysInMonth)
-        .chartXAxis {
-            AxisMarks(values: labelDays) { value in
-                AxisGridLine()
-                AxisValueLabel {
-                    if let day = value.as(Int.self) {
-                        Text("\(month)/\(day)")
-                            .font(.caption2)
-                    }
-                }
-            }
-        }
-        .chartYAxis(.hidden)
-        .chartLegend(.hidden)
-        .frame(height: graphHeight)
-    }
-
-    private func formatAmount(_ value: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .decimal
-        return formatter.string(from: NSNumber(value: value)) ?? "\(Int(value))"
-    }
-}
-
-// MARK: - ③ Container
+// MARK: - BalanceGraphView
 
 struct BalanceGraphView: View {
 
+    enum BalanceGraphState {
+        case empty
+        case hasData(yearMonths: [(year: Int, month: Int)], balances: [DailyBalance])
+    }
+
     let year: Int
     let month: Int
     let dailyBalances: [DailyBalance]
+    var onPreviousMonth: (() -> Void)? = nil
+    var onNextMonth: (() -> Void)? = nil
+    var onSelectYearMonth: ((Int, Int) -> Void)? = nil
+    var availableYearMonths: [(year: Int, month: Int)] = []
+
+    private var state: BalanceGraphState {
+        availableYearMonths.isEmpty
+            ? .empty
+            : .hasData(yearMonths: availableYearMonths, balances: dailyBalances)
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            BalanceGraphHeaderView(year: year, month: month)
-            BalanceGraphChartView(year: year, month: month, dailyBalances: dailyBalances)
+            BalanceGraphHeaderView(
+                year: year,
+                month: month,
+                state: state,
+                onPreviousMonth: onPreviousMonth,
+                onNextMonth: onNextMonth,
+                onSelectYearMonth: onSelectYearMonth
+            )
+            BalanceGraphChartView(year: year, month: month, state: state)
                 .padding(.horizontal, 4)
         }
         .padding(.horizontal)
@@ -162,6 +66,176 @@ struct BalanceGraphView: View {
             )
         }
         return BalanceGraphView(year: 2026, month: 4, dailyBalances: dummies)
+    }
+}
+
+// MARK: - BalanceGraphHeaderView
+
+struct BalanceGraphHeaderView: View {
+
+    let year: Int
+    let month: Int
+    let state: BalanceGraphView.BalanceGraphState
+    var onPreviousMonth: (() -> Void)? = nil
+    var onNextMonth: (() -> Void)? = nil
+    var onSelectYearMonth: ((Int, Int) -> Void)? = nil
+
+    @State private var showingDatePicker = false
+    @State private var selectedIndex: Int = 0
+
+    var body: some View {
+        HStack {
+            switch state {
+            case .empty:
+                EmptyView()
+            case .hasData(let yearMonths, _):
+                Button(action: { onPreviousMonth?() }) {
+                    Image(systemName: "chevron.left")
+                        .font(.headline)
+                }
+                Spacer()
+                Button(action: {
+                    selectedIndex = yearMonths.firstIndex(where: { $0.year == year && $0.month == month }) ?? 0
+                    showingDatePicker = true
+                }) {
+                    Text("\(String(year))年\(String(month))月")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                }
+                Spacer()
+                Button(action: { onNextMonth?() }) {
+                    Image(systemName: "chevron.right")
+                        .font(.headline)
+                }
+                .sheet(isPresented: $showingDatePicker) {
+                    VStack(spacing: 16) {
+                        Text("年月を選択")
+                            .font(.headline)
+                            .padding(.top, 24)
+
+                        Picker("年月", selection: $selectedIndex) {
+                            ForEach(yearMonths.indices, id: \.self) { index in
+                                let ym = yearMonths[index]
+                                Text("\(String(ym.year))年\(ym.month)月").tag(index)
+                            }
+                        }
+                        .pickerStyle(.wheel)
+
+                        Button("完了") {
+                            guard selectedIndex < yearMonths.count else { return }
+                            let selected = yearMonths[selectedIndex]
+                            onSelectYearMonth?(selected.year, selected.month)
+                            showingDatePicker = false
+                        }
+                        .font(.headline)
+                        .padding(.bottom, 24)
+                    }
+                    .presentationDetents([.fraction(0.4)])
+                }
+            }
+        }
+        .padding(.bottom, 8)
+    }
+}
+
+// MARK: - BalanceGraphChartView
+
+struct BalanceGraphChartView: View {
+
+    let year: Int
+    let month: Int
+    let state: BalanceGraphView.BalanceGraphState
+
+    private let graphHeight: CGFloat = 220
+
+    private var labelDays: [Int] {
+        [1, 5, 10, 15, 20, 25, daysInMonth]
+    }
+
+    private var daysInMonth: Int {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.locale = Locale(identifier: "ja_JP")
+        let components = DateComponents(year: year, month: month, day: 1)
+        guard let firstDay = calendar.date(from: components),
+              let range = calendar.range(of: .day, in: .month, for: firstDay) else { return 30 }
+        return range.count
+    }
+
+    var body: some View {
+        switch state {
+        case .empty:
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.secondary.opacity(0.1))
+                Text("データがありません")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+            .frame(height: graphHeight)
+        case .hasData(_, let balances):
+            Chart {
+                ForEach(Array(balances.enumerated()), id: \.offset) { index, balance in
+                    LineMark(
+                        x: .value("日付", index + 1),
+                        y: .value("金額", balance.cumulativeIncome),
+                        series: .value("種別", "収入")
+                    )
+                    .foregroundStyle(.blue)
+
+                    LineMark(
+                        x: .value("日付", index + 1),
+                        y: .value("金額", balance.cumulativeExpenses),
+                        series: .value("種別", "支出")
+                    )
+                    .foregroundStyle(.red)
+                }
+
+                if let last = balances.last {
+                    PointMark(
+                        x: .value("日付", balances.count),
+                        y: .value("金額", last.cumulativeIncome)
+                    )
+                    .foregroundStyle(.clear)
+                    .annotation(position: .topLeading) {
+                        Text(formatAmount(last.cumulativeIncome))
+                            .font(.caption2)
+                            .foregroundColor(.blue)
+                    }
+
+                    PointMark(
+                        x: .value("日付", balances.count),
+                        y: .value("金額", last.cumulativeExpenses)
+                    )
+                    .foregroundStyle(.clear)
+                    .annotation(position: .topLeading) {
+                        Text(formatAmount(last.cumulativeExpenses))
+                            .font(.caption2)
+                            .foregroundColor(.red)
+                    }
+                }
+            }
+            .chartXScale(domain: 1...daysInMonth)
+            .chartXAxis {
+                AxisMarks(values: labelDays) { value in
+                    AxisGridLine()
+                    AxisValueLabel {
+                        if let day = value.as(Int.self) {
+                            Text("\(month)/\(day)")
+                                .font(.caption2)
+                        }
+                    }
+                }
+            }
+            .chartYAxis(.hidden)
+            .chartLegend(.hidden)
+            .frame(height: graphHeight)
+        }
+    }
+
+    private func formatAmount(_ value: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter.string(from: NSNumber(value: value)) ?? "\(Int(value))"
     }
 }
 

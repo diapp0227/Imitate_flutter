@@ -15,6 +15,11 @@ protocol BalanceRecordRepositoryProtocol {
                           onFailure: @escaping (() -> Void))
     func getMonthlyExpenses(onSuccess: @escaping ((Int) -> Void),
                             onFailure: @escaping (() -> Void))
+    func getDailyBalanceData(year: Int, month: Int,
+                             onSuccess: @escaping (([[String: Any]]) -> Void),
+                             onFailure: @escaping (() -> Void))
+    func getAvailableYearMonths(onSuccess: @escaping (([String]) -> Void),
+                                onFailure: @escaping (() -> Void))
 }
 
 class BalanceRecordRepository: BalanceRecordRepositoryProtocol {
@@ -71,6 +76,40 @@ class BalanceRecordRepository: BalanceRecordRepositoryProtocol {
                 onFailure()
             } else {
                 print("failed getMonthlyExpenses")
+                onFailure()
+            }
+        }
+    }
+
+    func getDailyBalanceData(year: Int, month: Int,
+                             onSuccess: @escaping (([[String: Any]]) -> Void),
+                             onFailure: @escaping (() -> Void)) {
+        let arguments: [String: Any] = ["year": year, "month": month]
+        FlutterEngineManager.shared.channel?.invokeMethod("getDailyBalanceData", arguments: arguments) { result in
+
+            if let data = result as? [[String: Any]] {
+                onSuccess(data)
+            } else if let error = result as? FlutterError {
+                print("Error: \(error.message ?? "Unknown error")")
+                onFailure()
+            } else {
+                print("failed getDailyBalanceData")
+                onFailure()
+            }
+        }
+    }
+
+    func getAvailableYearMonths(onSuccess: @escaping (([String]) -> Void),
+                                onFailure: @escaping (() -> Void)) {
+        FlutterEngineManager.shared.channel?.invokeMethod("getAvailableYearMonths", arguments: nil) { result in
+
+            if let yearMonths = result as? [String] {
+                onSuccess(yearMonths)
+            } else if let error = result as? FlutterError {
+                print("Error: \(error.message ?? "Unknown error")")
+                onFailure()
+            } else {
+                print("failed getAvailableYearMonths")
                 onFailure()
             }
         }
