@@ -43,6 +43,7 @@ struct BalanceGraphHeaderView: View {
                     .font(.headline)
                     .fontWeight(.semibold)
             }
+            .disabled(availableYearMonths.isEmpty)
             Spacer()
             Button(action: { onNextMonth?() }) {
                 Image(systemName: "chevron.right")
@@ -65,6 +66,7 @@ struct BalanceGraphHeaderView: View {
                 .pickerStyle(.wheel)
 
                 Button("完了") {
+                    guard selectedIndex < availableYearMonths.count else { return }
                     let selected = availableYearMonths[selectedIndex]
                     onSelectYearMonth?(selected.year, selected.month)
                     showingDatePicker = false
@@ -81,9 +83,18 @@ struct BalanceGraphHeaderView: View {
 
 struct BalanceGraphChartView: View {
 
+    enum GraphState {
+        case empty
+        case hasData([DailyBalance])
+    }
+
     let year: Int
     let month: Int
     let dailyBalances: [DailyBalance]
+
+    private var graphState: GraphState {
+        dailyBalances.isEmpty ? .empty : .hasData(dailyBalances)
+    }
 
     private let graphHeight: CGFloat = 220
 
@@ -101,62 +112,74 @@ struct BalanceGraphChartView: View {
     }
 
     var body: some View {
-        Chart {
-            ForEach(Array(dailyBalances.enumerated()), id: \.offset) { index, balance in
-                LineMark(
-                    x: .value("日付", index + 1),
-                    y: .value("金額", balance.cumulativeIncome),
-                    series: .value("種別", "収入")
-                )
-                .foregroundStyle(.blue)
-
-                LineMark(
-                    x: .value("日付", index + 1),
-                    y: .value("金額", balance.cumulativeExpenses),
-                    series: .value("種別", "支出")
-                )
-                .foregroundStyle(.red)
+        switch graphState {
+        case .empty:
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color.secondary.opacity(0.1))
+                Text("データがありません")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
             }
+            .frame(height: graphHeight)
+        case .hasData(let balances):
+            Chart {
+                ForEach(Array(balances.enumerated()), id: \.offset) { index, balance in
+                    LineMark(
+                        x: .value("日付", index + 1),
+                        y: .value("金額", balance.cumulativeIncome),
+                        series: .value("種別", "収入")
+                    )
+                    .foregroundStyle(.blue)
 
-            if let last = dailyBalances.last {
-                PointMark(
-                    x: .value("日付", dailyBalances.count),
-                    y: .value("金額", last.cumulativeIncome)
-                )
-                .foregroundStyle(.clear)
-                .annotation(position: .topLeading) {
-                    Text(formatAmount(last.cumulativeIncome))
-                        .font(.caption2)
-                        .foregroundColor(.blue)
+                    LineMark(
+                        x: .value("日付", index + 1),
+                        y: .value("金額", balance.cumulativeExpenses),
+                        series: .value("種別", "支出")
+                    )
+                    .foregroundStyle(.red)
                 }
 
-                PointMark(
-                    x: .value("日付", dailyBalances.count),
-                    y: .value("金額", last.cumulativeExpenses)
-                )
-                .foregroundStyle(.clear)
-                .annotation(position: .topLeading) {
-                    Text(formatAmount(last.cumulativeExpenses))
-                        .font(.caption2)
-                        .foregroundColor(.red)
-                }
-            }
-        }
-        .chartXScale(domain: 1...daysInMonth)
-        .chartXAxis {
-            AxisMarks(values: labelDays) { value in
-                AxisGridLine()
-                AxisValueLabel {
-                    if let day = value.as(Int.self) {
-                        Text("\(month)/\(day)")
+                if let last = balances.last {
+                    PointMark(
+                        x: .value("日付", balances.count),
+                        y: .value("金額", last.cumulativeIncome)
+                    )
+                    .foregroundStyle(.clear)
+                    .annotation(position: .topLeading) {
+                        Text(formatAmount(last.cumulativeIncome))
                             .font(.caption2)
+                            .foregroundColor(.blue)
+                    }
+
+                    PointMark(
+                        x: .value("日付", balances.count),
+                        y: .value("金額", last.cumulativeExpenses)
+                    )
+                    .foregroundStyle(.clear)
+                    .annotation(position: .topLeading) {
+                        Text(formatAmount(last.cumulativeExpenses))
+                            .font(.caption2)
+                            .foregroundColor(.red)
                     }
                 }
             }
+            .chartXScale(domain: 1...daysInMonth)
+            .chartXAxis {
+                AxisMarks(values: labelDays) { value in
+                    AxisGridLine()
+                    AxisValueLabel {
+                        if let day = value.as(Int.self) {
+                            Text("\(month)/\(day)")
+                                .font(.caption2)
+                        }
+                    }
+                }
+            }
+            .chartYAxis(.hidden)
+            .chartLegend(.hidden)
+            .frame(height: graphHeight)
         }
-        .chartYAxis(.hidden)
-        .chartLegend(.hidden)
-        .frame(height: graphHeight)
     }
 
     private func formatAmount(_ value: Double) -> String {
