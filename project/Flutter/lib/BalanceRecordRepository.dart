@@ -33,6 +33,13 @@ class BalanceRecordRepository {
           final expenses = await getMonthlyExpenses();
           print('dart getMonthlyExpenses result: $expenses');
           return expenses;
+        case 'getDailyBalanceData':
+          final args = Map<String, dynamic>.from(call.arguments);
+          final year = args['year'] as int;
+          final month = args['month'] as int;
+          final dailyData = await getDailyBalanceData(year, month);
+          print('dart getDailyBalanceData result: $dailyData');
+          return dailyData;
         default:
           throw PlatformException(code: 'Unimplemented');
       }
@@ -115,6 +122,48 @@ class BalanceRecordRepository {
     }
 
     return total;
+  }
+
+  Future<List<Map<String, dynamic>>> getDailyBalanceData(int year, int month) async {
+    print('getDailyBalanceData: $year-$month');
+    final db = await database;
+    final monthStr = '$year-${month.toString().padLeft(2, '0')}';
+
+    final records = await db.query(
+      'balanceRecords',
+      where: 'date LIKE ?',
+      whereArgs: ['$monthStr%'],
+      orderBy: 'date ASC',
+    );
+
+    final daysInMonth = DateTime(year, month + 1, 0).day;
+    int cumulativeIncome = 0;
+    int cumulativeExpenses = 0;
+
+    final List<Map<String, dynamic>> result = [];
+
+    for (int day = 1; day <= daysInMonth; day++) {
+      final dayStr = '$monthStr-${day.toString().padLeft(2, '0')}';
+
+      for (var record in records) {
+        if (record['date'] == dayStr) {
+          final amount = record['amount'] as int? ?? 0;
+          if (record['type'] == '収入') {
+            cumulativeIncome += amount;
+          } else if (record['type'] == '支出') {
+            cumulativeExpenses += amount;
+          }
+        }
+      }
+
+      result.add({
+        'date': dayStr,
+        'cumulativeIncome': cumulativeIncome,
+        'cumulativeExpenses': cumulativeExpenses,
+      });
+    }
+
+    return result;
   }
 
   Future<int> getMonthlyExpenses() async {
