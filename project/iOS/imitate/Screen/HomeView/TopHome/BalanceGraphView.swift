@@ -14,87 +14,137 @@ struct DailyBalance {
     let cumulativeExpenses: Double
 }
 
-// MARK: - ① Header
+// MARK: - BalanceGraphView
+
+struct BalanceGraphView: View {
+
+    enum BalanceGraphState {
+        case empty
+        case hasData(yearMonths: [(year: Int, month: Int)], balances: [DailyBalance])
+    }
+
+    let year: Int
+    let month: Int
+    let dailyBalances: [DailyBalance]
+    var onPreviousMonth: (() -> Void)? = nil
+    var onNextMonth: (() -> Void)? = nil
+    var onSelectYearMonth: ((Int, Int) -> Void)? = nil
+    var availableYearMonths: [(year: Int, month: Int)] = []
+
+    private var state: BalanceGraphState {
+        availableYearMonths.isEmpty
+            ? .empty
+            : .hasData(yearMonths: availableYearMonths, balances: dailyBalances)
+    }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            BalanceGraphHeaderView(
+                year: year,
+                month: month,
+                state: state,
+                onPreviousMonth: onPreviousMonth,
+                onNextMonth: onNextMonth,
+                onSelectYearMonth: onSelectYearMonth
+            )
+            BalanceGraphChartView(year: year, month: month, state: state)
+                .padding(.horizontal, 4)
+        }
+        .padding(.horizontal)
+    }
+
+    static var dummyPreview: BalanceGraphView {
+        let calendar = Calendar.current
+        let today = Date()
+        let dummies: [DailyBalance] = (1...30).map { day in
+            let components = DateComponents(year: 2026, month: 4, day: day)
+            let date = calendar.date(from: components) ?? today
+            return DailyBalance(
+                date: date,
+                cumulativeIncome: Double(day) * 1_500,
+                cumulativeExpenses: Double(day) * 900
+            )
+        }
+        return BalanceGraphView(year: 2026, month: 4, dailyBalances: dummies)
+    }
+}
+
+// MARK: - BalanceGraphHeaderView
 
 struct BalanceGraphHeaderView: View {
 
     let year: Int
     let month: Int
+    let state: BalanceGraphView.BalanceGraphState
     var onPreviousMonth: (() -> Void)? = nil
     var onNextMonth: (() -> Void)? = nil
     var onSelectYearMonth: ((Int, Int) -> Void)? = nil
-    var availableYearMonths: [(year: Int, month: Int)] = []
 
     @State private var showingDatePicker = false
     @State private var selectedIndex: Int = 0
 
     var body: some View {
         HStack {
-            Button(action: { onPreviousMonth?() }) {
-                Image(systemName: "chevron.left")
-                    .font(.headline)
-            }
-            Spacer()
-            Button(action: {
-                selectedIndex = availableYearMonths.firstIndex(where: { $0.year == year && $0.month == month }) ?? 0
-                showingDatePicker = true
-            }) {
-                Text("\(String(year))年\(String(month))月")
-                    .font(.headline)
-                    .fontWeight(.semibold)
-            }
-            .disabled(availableYearMonths.isEmpty)
-            Spacer()
-            Button(action: { onNextMonth?() }) {
-                Image(systemName: "chevron.right")
-                    .font(.headline)
+            switch state {
+            case .empty:
+                EmptyView()
+            case .hasData(let yearMonths, _):
+                Button(action: { onPreviousMonth?() }) {
+                    Image(systemName: "chevron.left")
+                        .font(.headline)
+                }
+                Spacer()
+                Button(action: {
+                    selectedIndex = yearMonths.firstIndex(where: { $0.year == year && $0.month == month }) ?? 0
+                    showingDatePicker = true
+                }) {
+                    Text("\(String(year))年\(String(month))月")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                }
+                Spacer()
+                Button(action: { onNextMonth?() }) {
+                    Image(systemName: "chevron.right")
+                        .font(.headline)
+                }
+                .sheet(isPresented: $showingDatePicker) {
+                    VStack(spacing: 16) {
+                        Text("年月を選択")
+                            .font(.headline)
+                            .padding(.top, 24)
+
+                        Picker("年月", selection: $selectedIndex) {
+                            ForEach(yearMonths.indices, id: \.self) { index in
+                                let ym = yearMonths[index]
+                                Text("\(String(ym.year))年\(ym.month)月").tag(index)
+                            }
+                        }
+                        .pickerStyle(.wheel)
+
+                        Button("完了") {
+                            guard selectedIndex < yearMonths.count else { return }
+                            let selected = yearMonths[selectedIndex]
+                            onSelectYearMonth?(selected.year, selected.month)
+                            showingDatePicker = false
+                        }
+                        .font(.headline)
+                        .padding(.bottom, 24)
+                    }
+                    .presentationDetents([.fraction(0.4)])
+                }
             }
         }
         .padding(.bottom, 8)
-        .sheet(isPresented: $showingDatePicker) {
-            VStack(spacing: 16) {
-                Text("年月を選択")
-                    .font(.headline)
-                    .padding(.top, 24)
-
-                Picker("年月", selection: $selectedIndex) {
-                    ForEach(availableYearMonths.indices, id: \.self) { index in
-                        let ym = availableYearMonths[index]
-                        Text("\(String(ym.year))年\(ym.month)月").tag(index)
-                    }
-                }
-                .pickerStyle(.wheel)
-
-                Button("完了") {
-                    guard selectedIndex < availableYearMonths.count else { return }
-                    let selected = availableYearMonths[selectedIndex]
-                    onSelectYearMonth?(selected.year, selected.month)
-                    showingDatePicker = false
-                }
-                .font(.headline)
-                .padding(.bottom, 24)
-            }
-            .presentationDetents([.fraction(0.4)])
-        }
     }
 }
 
-// MARK: - ② Chart
+// MARK: - BalanceGraphChartView
 
 struct BalanceGraphChartView: View {
 
-    enum GraphState {
-        case empty
-        case hasData([DailyBalance])
-    }
-
     let year: Int
     let month: Int
-    let dailyBalances: [DailyBalance]
-
-    private var graphState: GraphState {
-        dailyBalances.isEmpty ? .empty : .hasData(dailyBalances)
-    }
+    let state: BalanceGraphView.BalanceGraphState
 
     private let graphHeight: CGFloat = 220
 
@@ -112,7 +162,7 @@ struct BalanceGraphChartView: View {
     }
 
     var body: some View {
-        switch graphState {
+        switch state {
         case .empty:
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
@@ -122,7 +172,7 @@ struct BalanceGraphChartView: View {
                     .foregroundColor(.secondary)
             }
             .frame(height: graphHeight)
-        case .hasData(let balances):
+        case .hasData(_, let balances):
             Chart {
                 ForEach(Array(balances.enumerated()), id: \.offset) { index, balance in
                     LineMark(
@@ -186,50 +236,6 @@ struct BalanceGraphChartView: View {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         return formatter.string(from: NSNumber(value: value)) ?? "\(Int(value))"
-    }
-}
-
-// MARK: - ③ Container
-
-struct BalanceGraphView: View {
-
-    let year: Int
-    let month: Int
-    let dailyBalances: [DailyBalance]
-    var onPreviousMonth: (() -> Void)? = nil
-    var onNextMonth: (() -> Void)? = nil
-    var onSelectYearMonth: ((Int, Int) -> Void)? = nil
-    var availableYearMonths: [(year: Int, month: Int)] = []
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            BalanceGraphHeaderView(
-                year: year,
-                month: month,
-                onPreviousMonth: onPreviousMonth,
-                onNextMonth: onNextMonth,
-                onSelectYearMonth: onSelectYearMonth,
-                availableYearMonths: availableYearMonths
-            )
-            BalanceGraphChartView(year: year, month: month, dailyBalances: dailyBalances)
-                .padding(.horizontal, 4)
-        }
-        .padding(.horizontal)
-    }
-
-    static var dummyPreview: BalanceGraphView {
-        let calendar = Calendar.current
-        let today = Date()
-        let dummies: [DailyBalance] = (1...30).map { day in
-            let components = DateComponents(year: 2026, month: 4, day: day)
-            let date = calendar.date(from: components) ?? today
-            return DailyBalance(
-                date: date,
-                cumulativeIncome: Double(day) * 1_500,
-                cumulativeExpenses: Double(day) * 900
-            )
-        }
-        return BalanceGraphView(year: 2026, month: 4, dailyBalances: dummies)
     }
 }
 
