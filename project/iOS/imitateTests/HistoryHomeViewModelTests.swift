@@ -179,6 +179,10 @@ final class HistoryHomeViewModelTests: XCTestCase {
 
 /// テスト用のモック BalanceRecordRepository
 class MockBalanceRecordRepository: BalanceRecordRepositoryProtocol {
+    func getAvailableYearMonths(onSuccess: @escaping (([String]) -> Void), onFailure: @escaping (() -> Void)) {
+        // TODO: 別途テスト作成
+    }
+    
     func getDailyBalanceData(year: Int, month: Int, onSuccess: @escaping (([[String : Any]]) -> Void), onFailure: @escaping (() -> Void)) {
         // TODO: 別途テスト作成
     }
