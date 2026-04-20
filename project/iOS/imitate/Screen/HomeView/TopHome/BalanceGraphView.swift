@@ -22,6 +22,11 @@ struct BalanceGraphHeaderView: View {
     let month: Int
     var onPreviousMonth: (() -> Void)? = nil
     var onNextMonth: (() -> Void)? = nil
+    var onSelectYearMonth: ((Int, Int) -> Void)? = nil
+    var availableYearMonths: [(year: Int, month: Int)] = []
+
+    @State private var showingDatePicker = false
+    @State private var selectedIndex: Int = 0
 
     var body: some View {
         HStack {
@@ -30,7 +35,10 @@ struct BalanceGraphHeaderView: View {
                     .font(.headline)
             }
             Spacer()
-            Button(action: {}) {
+            Button(action: {
+                selectedIndex = availableYearMonths.firstIndex(where: { $0.year == year && $0.month == month }) ?? 0
+                showingDatePicker = true
+            }) {
                 Text("\(String(year))年\(String(month))月")
                     .font(.headline)
                     .fontWeight(.semibold)
@@ -42,6 +50,30 @@ struct BalanceGraphHeaderView: View {
             }
         }
         .padding(.bottom, 8)
+        .sheet(isPresented: $showingDatePicker) {
+            VStack(spacing: 16) {
+                Text("年月を選択")
+                    .font(.headline)
+                    .padding(.top, 24)
+
+                Picker("年月", selection: $selectedIndex) {
+                    ForEach(availableYearMonths.indices, id: \.self) { index in
+                        let ym = availableYearMonths[index]
+                        Text("\(String(ym.year))年\(ym.month)月").tag(index)
+                    }
+                }
+                .pickerStyle(.wheel)
+
+                Button("完了") {
+                    let selected = availableYearMonths[selectedIndex]
+                    onSelectYearMonth?(selected.year, selected.month)
+                    showingDatePicker = false
+                }
+                .font(.headline)
+                .padding(.bottom, 24)
+            }
+            .presentationDetents([.fraction(0.4)])
+        }
     }
 }
 
@@ -143,6 +175,8 @@ struct BalanceGraphView: View {
     let dailyBalances: [DailyBalance]
     var onPreviousMonth: (() -> Void)? = nil
     var onNextMonth: (() -> Void)? = nil
+    var onSelectYearMonth: ((Int, Int) -> Void)? = nil
+    var availableYearMonths: [(year: Int, month: Int)] = []
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -150,7 +184,9 @@ struct BalanceGraphView: View {
                 year: year,
                 month: month,
                 onPreviousMonth: onPreviousMonth,
-                onNextMonth: onNextMonth
+                onNextMonth: onNextMonth,
+                onSelectYearMonth: onSelectYearMonth,
+                availableYearMonths: availableYearMonths
             )
             BalanceGraphChartView(year: year, month: month, dailyBalances: dailyBalances)
                 .padding(.horizontal, 4)

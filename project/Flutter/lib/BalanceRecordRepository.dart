@@ -41,6 +41,10 @@ class BalanceRecordRepository {
           final dailyData = await getDailyBalanceData(year, month);
           print('dart getDailyBalanceData result: $dailyData');
           return dailyData;
+        case 'getAvailableYearMonths':
+          final yearMonths = await getAvailableYearMonths();
+          print('dart getAvailableYearMonths result: $yearMonths');
+          return yearMonths;
         default:
           throw PlatformException(code: 'Unimplemented');
       }
@@ -165,6 +169,15 @@ class BalanceRecordRepository {
     }
 
     return result;
+  }
+
+  Future<List<String>> getAvailableYearMonths() async {
+    print('getAvailableYearMonths');
+    final db = await database;
+    final result = await db.rawQuery(
+      'SELECT DISTINCT substr(date, 1, 7) as yearMonth FROM balanceRecords ORDER BY yearMonth ASC',
+    );
+    return result.map((row) => row['yearMonth'] as String).toList();
   }
 
   Future<int> getMonthlyExpenses() async {

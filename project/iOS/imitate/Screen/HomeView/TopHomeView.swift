@@ -23,7 +23,9 @@ struct TopHomeView: View {
                         month: viewModel.selectedMonth,
                         dailyBalances: viewModel.dailyBalances,
                         onPreviousMonth: { viewModel.goToPreviousMonth() },
-                        onNextMonth: { viewModel.goToNextMonth() }
+                        onNextMonth: { viewModel.goToNextMonth() },
+                        onSelectYearMonth: { year, month in viewModel.selectYearMonth(year: year, month: month) },
+                        availableYearMonths: viewModel.availableYearMonths
                     )
                     .padding(.vertical, 8)
                 }
@@ -58,6 +60,7 @@ struct TopHomeView: View {
         .onAppear {
             viewModel.loadMonthlyBalance()
             viewModel.loadDailyBalances(year: viewModel.selectedYear, month: viewModel.selectedMonth)
+            viewModel.loadAvailableYearMonths()
         }
         .onChange(of: showingSheetToInputHome) { oldValue, newValue in
             if !newValue {

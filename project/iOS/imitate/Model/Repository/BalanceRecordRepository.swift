@@ -18,6 +18,8 @@ protocol BalanceRecordRepositoryProtocol {
     func getDailyBalanceData(year: Int, month: Int,
                              onSuccess: @escaping (([[String: Any]]) -> Void),
                              onFailure: @escaping (() -> Void))
+    func getAvailableYearMonths(onSuccess: @escaping (([String]) -> Void),
+                                onFailure: @escaping (() -> Void))
 }
 
 class BalanceRecordRepository: BalanceRecordRepositoryProtocol {
@@ -92,6 +94,22 @@ class BalanceRecordRepository: BalanceRecordRepositoryProtocol {
                 onFailure()
             } else {
                 print("failed getDailyBalanceData")
+                onFailure()
+            }
+        }
+    }
+
+    func getAvailableYearMonths(onSuccess: @escaping (([String]) -> Void),
+                                onFailure: @escaping (() -> Void)) {
+        FlutterEngineManager.shared.channel?.invokeMethod("getAvailableYearMonths", arguments: nil) { result in
+
+            if let yearMonths = result as? [String] {
+                onSuccess(yearMonths)
+            } else if let error = result as? FlutterError {
+                print("Error: \(error.message ?? "Unknown error")")
+                onFailure()
+            } else {
+                print("failed getAvailableYearMonths")
                 onFailure()
             }
         }
