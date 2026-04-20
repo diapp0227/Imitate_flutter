@@ -14,11 +14,26 @@ class TopHomeViewModel: ObservableObject {
     @Published var monthlyExpenses: String = "0"
     @Published var dailyBalances: [DailyBalance] = []
     @Published var isLoading: Bool = false
+    @Published var selectedYear: Int = Calendar.current.component(.year, from: Date())
+    @Published var selectedMonth: Int = Calendar.current.component(.month, from: Date())
 
     private let repository: BalanceRecordRepositoryProtocol
 
     init(repository: BalanceRecordRepositoryProtocol = BalanceRecordRepository.shared) {
         self.repository = repository
+    }
+
+    func goToPreviousMonth() { shiftMonth(by: -1) }
+    func goToNextMonth() { shiftMonth(by: 1) }
+
+    private func shiftMonth(by value: Int) {
+        let calendar = Calendar.current
+        let components = DateComponents(year: selectedYear, month: selectedMonth)
+        guard let currentDate = calendar.date(from: components),
+              let newDate = calendar.date(byAdding: .month, value: value, to: currentDate) else { return }
+        selectedYear = calendar.component(.year, from: newDate)
+        selectedMonth = calendar.component(.month, from: newDate)
+        loadDailyBalances(year: selectedYear, month: selectedMonth)
     }
 
     func loadDailyBalances(year: Int, month: Int) {

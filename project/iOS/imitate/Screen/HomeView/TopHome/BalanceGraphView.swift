@@ -20,10 +20,12 @@ struct BalanceGraphHeaderView: View {
 
     let year: Int
     let month: Int
+    var onPreviousMonth: (() -> Void)? = nil
+    var onNextMonth: (() -> Void)? = nil
 
     var body: some View {
         HStack {
-            Button(action: {}) {
+            Button(action: { onPreviousMonth?() }) {
                 Image(systemName: "chevron.left")
                     .font(.headline)
             }
@@ -34,7 +36,7 @@ struct BalanceGraphHeaderView: View {
                     .fontWeight(.semibold)
             }
             Spacer()
-            Button(action: {}) {
+            Button(action: { onNextMonth?() }) {
                 Image(systemName: "chevron.right")
                     .font(.headline)
             }
@@ -139,10 +141,17 @@ struct BalanceGraphView: View {
     let year: Int
     let month: Int
     let dailyBalances: [DailyBalance]
+    var onPreviousMonth: (() -> Void)? = nil
+    var onNextMonth: (() -> Void)? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            BalanceGraphHeaderView(year: year, month: month)
+            BalanceGraphHeaderView(
+                year: year,
+                month: month,
+                onPreviousMonth: onPreviousMonth,
+                onNextMonth: onNextMonth
+            )
             BalanceGraphChartView(year: year, month: month, dailyBalances: dailyBalances)
                 .padding(.horizontal, 4)
         }
