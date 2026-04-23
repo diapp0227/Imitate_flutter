@@ -34,8 +34,8 @@ struct HistoryHomeView: View {
         .cornerRadius(16)
         .shadow(color: .black.opacity(0.1), radius: 8)
         .padding()
+        .logScreenAppeared()
         .onAppear() {
-            AppLogger.shared.screenAppeared("HistoryHomeView")
             viewModel.loadHistory()
         }
     }

@@ -77,8 +77,8 @@ struct InputHomeView: View {
                         )
                 }
             }
+            .logScreenAppeared()
             .onAppear() {
-                AppLogger.shared.screenAppeared("InputHomeView")
                 selectedIncomeCategory = incomeCategoryList.first ?? ""
                 selectedExpensesCategory = expensesCategoryList.first ?? ""
             }

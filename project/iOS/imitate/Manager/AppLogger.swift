@@ -34,8 +34,8 @@ final class AppLogger {
 
     // MARK: - Screen
 
-    func screenAppeared(_ screen: String) {
-        let message = "【iOS】[\(screen)] appeared"
+    func screenAppeared(file: String = #fileID) {
+        let message = "【iOS】[\(file)] appeared"
         screenLogger.debug("\(message, privacy: .public)")
         forward(level: .debug, category: .screen, message: message)
     }

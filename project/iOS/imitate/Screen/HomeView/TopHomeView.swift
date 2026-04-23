@@ -66,8 +66,8 @@ struct TopHomeView: View {
             }
             .presentationDetents([.fraction(0.75), .large])
         }
+        .logScreenAppeared()
         .onAppear {
-            AppLogger.shared.screenAppeared("TopHomeView")
             viewModel.loadMonthlyBalance()
             viewModel.loadDailyBalances(year: viewModel.selectedYear, month: viewModel.selectedMonth)
             viewModel.loadAvailableYearMonths()
