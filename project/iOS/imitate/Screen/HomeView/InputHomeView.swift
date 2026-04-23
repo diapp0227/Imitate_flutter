@@ -12,6 +12,7 @@ struct InputHomeView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var showErrorMessageAlert = false
+    @State private var isManualDismiss = false
     
     /// 種類カテゴリ(収入・支出) の選択状態
     @State var segmentSelected: InputBalanceSegmentView.BalanceType = .income
@@ -90,11 +91,19 @@ struct InputHomeView: View {
             )
             .padding()
         }
+        .onDisappear {
+            if !isManualDismiss {
+                AppLogger.shared.userAction("スワイプで閉じる")
+            }
+            isManualDismiss = false
+        }
         .alert("金額を入力してください" ,isPresented: $showErrorMessageAlert) {
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
+                    AppLogger.shared.userAction("閉じる")
+                    isManualDismiss = true
                     dismiss()
                 } label: {
                     Image(systemName: "chevron.left")
@@ -112,7 +121,7 @@ struct InputHomeView: View {
     
     /// 入力した情報を判定
     private func validateInputRecode() {
-        AppLogger.shared.buttonTapped("保存")
+        AppLogger.shared.userAction("保存")
         // 金額が存在するか
         if amountText.isEmpty {
             showErrorMessageAlert = true
@@ -144,6 +153,7 @@ struct InputHomeView: View {
         BalanceRecordRepository.shared.selectAll(onSuccess: { _ in
         }, onFailure: {
         })
+        isManualDismiss = true
         dismiss()
     }
 }
