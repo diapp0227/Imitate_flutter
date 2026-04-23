@@ -42,7 +42,7 @@ final class AppLogger {
 
     // MARK: - Action
 
-    func buttonTapped(_ button: String, on screen: String) {
+    func buttonTapped(_ button: String, on screen: String = #fileID) {
         let message = "【iOS】[\(screen)] '\(button)' tapped"
         actionLogger.debug("\(message, privacy: .public)")
         forward(level: .debug, category: .action, message: message)
