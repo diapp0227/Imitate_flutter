@@ -112,7 +112,7 @@ struct InputHomeView: View {
     
     /// 入力した情報を判定
     private func validateInputRecode() {
-        AppLogger.shared.buttonTapped("Save")
+        AppLogger.shared.buttonTapped("保存")
         // 金額が存在するか
         if amountText.isEmpty {
             showErrorMessageAlert = true
