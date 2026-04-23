@@ -89,6 +89,9 @@
 		B9E0D79A2F85344B00CF247C /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E0D7992F85344B00CF247C /* DictionaryExtension.swift */; };
 		B9E0D79B2F85344B00CF247C /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E0D7992F85344B00CF247C /* DictionaryExtension.swift */; };
 		B9E0D79C2F85344B00CF247C /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E0D7992F85344B00CF247C /* DictionaryExtension.swift */; };
+		B9AB12352F9C000000000001 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12342F9C000000000001 /* AppLogger.swift */; };
+		B9AB12362F9C000000000001 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12342F9C000000000001 /* AppLogger.swift */; };
+		B9AB12372F9C000000000001 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12342F9C000000000001 /* AppLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +161,7 @@
 		B9C191D02F0A000000AFE3C3 /* BalanceGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceGraphView.swift; sourceTree = "<group>"; };
 		B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceRecordRepository.swift; sourceTree = "<group>"; };
 		B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterEngineManager.swift; sourceTree = "<group>"; };
+		B9AB12342F9C000000000001 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		B9DEC5562F1BF4AC0085FEC5 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		B9DEC5592F1D525C0085FEC5 /* HistoryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRowView.swift; sourceTree = "<group>"; };
 		B9E0D7992F85344B00CF247C /* DictionaryExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
@@ -341,6 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */,
+				B9AB12342F9C000000000001 /* AppLogger.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -521,6 +526,7 @@
 				B9C191A42EFFDBD200AFE3C3 /* BaseHomeView.swift in Sources */,
 				B9DEC55A2F1D525C0085FEC5 /* HistoryRowView.swift in Sources */,
 				B9D08D302E520ED20074BFD5 /* FlutterEngineManager.swift in Sources */,
+				B9AB12352F9C000000000001 /* AppLogger.swift in Sources */,
 				B9C166622F26772400A3BEC5 /* BalanceRecordInfo.swift in Sources */,
 				B9DEC5572F1BF4AC0085FEC5 /* DateExtension.swift in Sources */,
 				B95E7F5B2F8558C10071D91A /* HistoryHomeViewModel.swift in Sources */,
@@ -558,6 +564,7 @@
 				B95E7F642F8558D70071D91A /* HistoryHomeViewModelTests.swift in Sources */,
 				B9C166632F267E7500A3BEC5 /* BalanceRecordInfo.swift in Sources */,
 				B9C191AF2EFFDC3300AFE3C3 /* FlutterEngineManager.swift in Sources */,
+				B9AB12362F9C000000000001 /* AppLogger.swift in Sources */,
 				B9C191CF2F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */,
 				B9DEC55D2F1D53930085FEC5 /* DateExtension.swift in Sources */,
 				B9C191BA2EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */,
@@ -587,6 +594,7 @@
 				B961A2672F097AEB00B2989C /* InputBalanceSegmentView.swift in Sources */,
 				B9C191C32EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */,
 				B9C191B02EFFDC3300AFE3C3 /* FlutterEngineManager.swift in Sources */,
+				B9AB12372F9C000000000001 /* AppLogger.swift in Sources */,
 				B9E0D79C2F85344B00CF247C /* DictionaryExtension.swift in Sources */,
 				B9C191A62EFFDC2100AFE3C3 /* AppDelegate.swift in Sources */,
 				B9C191D02F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */,

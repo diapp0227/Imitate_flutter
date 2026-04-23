@@ -22,9 +22,18 @@ struct TopHomeView: View {
                         year: viewModel.selectedYear,
                         month: viewModel.selectedMonth,
                         dailyBalances: viewModel.dailyBalances,
-                        onPreviousMonth: { viewModel.goToPreviousMonth() },
-                        onNextMonth: { viewModel.goToNextMonth() },
-                        onSelectYearMonth: { year, month in viewModel.selectYearMonth(year: year, month: month) },
+                        onPreviousMonth: {
+                            AppLogger.shared.buttonTapped("PreviousMonth", on: "TopHomeView")
+                            viewModel.goToPreviousMonth()
+                        },
+                        onNextMonth: {
+                            AppLogger.shared.buttonTapped("NextMonth", on: "TopHomeView")
+                            viewModel.goToNextMonth()
+                        },
+                        onSelectYearMonth: { year, month in
+                            AppLogger.shared.buttonTapped("SelectYearMonth", on: "TopHomeView")
+                            viewModel.selectYearMonth(year: year, month: month)
+                        },
                         availableYearMonths: viewModel.availableYearMonths
                     )
                     .padding(.vertical, 8)
@@ -58,6 +67,7 @@ struct TopHomeView: View {
             .presentationDetents([.fraction(0.75), .large])
         }
         .onAppear {
+            AppLogger.shared.screenAppeared("TopHomeView")
             viewModel.loadMonthlyBalance()
             viewModel.loadDailyBalances(year: viewModel.selectedYear, month: viewModel.selectedMonth)
             viewModel.loadAvailableYearMonths()
@@ -71,6 +81,7 @@ struct TopHomeView: View {
     }
     
     func tapPlusButton() {
+        AppLogger.shared.buttonTapped("Plus", on: "TopHomeView")
         showingSheetToInputHome = true
     }
 }

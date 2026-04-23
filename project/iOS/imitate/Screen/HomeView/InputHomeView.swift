@@ -78,6 +78,7 @@ struct InputHomeView: View {
                 }
             }
             .onAppear() {
+                AppLogger.shared.screenAppeared("InputHomeView")
                 selectedIncomeCategory = incomeCategoryList.first ?? ""
                 selectedExpensesCategory = expensesCategoryList.first ?? ""
             }
@@ -111,6 +112,7 @@ struct InputHomeView: View {
     
     /// 入力した情報を判定
     private func validateInputRecode() {
+        AppLogger.shared.buttonTapped("Save", on: "InputHomeView")
         // 金額が存在するか
         if amountText.isEmpty {
             showErrorMessageAlert = true
@@ -139,10 +141,8 @@ struct InputHomeView: View {
                                                                 "createdAt": Date().toString(style: .yyyy_MM_dd),
                                                                 "gameFlag": false])
         // レコード取得
-        BalanceRecordRepository.shared.selectAll(onSuccess: { result in
-            print("success \(String(describing: result?.last))")
+        BalanceRecordRepository.shared.selectAll(onSuccess: { _ in
         }, onFailure: {
-            print("failure")
         })
         dismiss()
     }
