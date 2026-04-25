@@ -17,7 +17,7 @@ final class AppLogger {
     enum Category: String {
         case screen  = "Screen"
         case action  = "Action"
-        case network = "Network"
+        case channel = "Channel"
     }
 
     static let shared = AppLogger()
@@ -28,7 +28,7 @@ final class AppLogger {
 
     private lazy var screenLogger  = Logger(subsystem: subsystem, category: Category.screen.rawValue)
     private lazy var actionLogger  = Logger(subsystem: subsystem, category: Category.action.rawValue)
-    private lazy var networkLogger = Logger(subsystem: subsystem, category: Category.network.rawValue)
+    private lazy var channelLogger = Logger(subsystem: subsystem, category: Category.channel.rawValue)
 
     private init() {}
 
@@ -48,24 +48,24 @@ final class AppLogger {
         forward(level: .debug, category: .action, message: message)
     }
 
-    // MARK: - Network
+    // MARK: - Channel
 
-    func networkRequest(_ method: String) {
-        let message = "【iOS】[\(method)] requesting"
-        networkLogger.debug("\(message, privacy: .public)")
-        forward(level: .debug, category: .network, message: message)
+    func channelRequest(_ method: String) {
+        let message = "【iOS】[\(method)] channel requesting"
+        channelLogger.debug("\(message, privacy: .public)")
+        forward(level: .debug, category: .channel, message: message)
     }
 
-    func networkSuccess(_ method: String) {
-        let message = "【iOS】[\(method)] success"
-        networkLogger.debug("\(message, privacy: .public)")
-        forward(level: .debug, category: .network, message: message)
+    func channelSuccess(_ method: String) {
+        let message = "【iOS】[\(method)] channel success"
+        channelLogger.debug("\(message, privacy: .public)")
+        forward(level: .debug, category: .channel, message: message)
     }
 
-    func networkFailure(_ method: String, error: String) {
-        let message = "【iOS】[\(method)] failure: \(error)"
-        networkLogger.debug("\(message, privacy: .public)")
-        forward(level: .debug, category: .network, message: message)
+    func channelFailure(_ method: String, error: String) {
+        let message = "【iOS】[\(method)] channel failure: \(error)"
+        channelLogger.debug("\(message, privacy: .public)")
+        forward(level: .debug, category: .channel, message: message)
     }
 
     // MARK: - Private
