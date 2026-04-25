@@ -12,6 +12,7 @@ struct InputHomeView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State private var showErrorMessageAlert = false
+    @State private var isManualDismiss = false
     
     /// 種類カテゴリ(収入・支出) の選択状態
     @State var segmentSelected: InputBalanceSegmentView.BalanceType = .income
@@ -77,6 +78,7 @@ struct InputHomeView: View {
                         )
                 }
             }
+            .logScreenAppeared()
             .onAppear() {
                 selectedIncomeCategory = incomeCategoryList.first ?? ""
                 selectedExpensesCategory = expensesCategoryList.first ?? ""
@@ -89,11 +91,19 @@ struct InputHomeView: View {
             )
             .padding()
         }
+        .onDisappear {
+            if !isManualDismiss {
+                AppLogger.shared.userAction("スワイプで閉じる")
+            }
+            isManualDismiss = false
+        }
         .alert("金額を入力してください" ,isPresented: $showErrorMessageAlert) {
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
+                    AppLogger.shared.userAction("閉じる")
+                    isManualDismiss = true
                     dismiss()
                 } label: {
                     Image(systemName: "chevron.left")
@@ -111,6 +121,7 @@ struct InputHomeView: View {
     
     /// 入力した情報を判定
     private func validateInputRecode() {
+        AppLogger.shared.userAction("保存")
         // 金額が存在するか
         if amountText.isEmpty {
             showErrorMessageAlert = true
@@ -139,11 +150,10 @@ struct InputHomeView: View {
                                                                 "createdAt": Date().toString(style: .yyyy_MM_dd),
                                                                 "gameFlag": false])
         // レコード取得
-        BalanceRecordRepository.shared.selectAll(onSuccess: { result in
-            print("success \(String(describing: result?.last))")
+        BalanceRecordRepository.shared.selectAll(onSuccess: { _ in
         }, onFailure: {
-            print("failure")
         })
+        isManualDismiss = true
         dismiss()
     }
 }

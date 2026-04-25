@@ -10,6 +10,7 @@ import SwiftUI
 struct GameHomeView: View {
     var body: some View {
         Text("GameHomeView")
+            .logScreenAppeared()
     }
 }
 
