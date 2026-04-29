@@ -1,19 +1,15 @@
 import 'package:flutter/services.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
 import 'package:intl/intl.dart';
+import 'DatabaseProvider.dart';
 
 class BalanceRecordRepository {
   static const platform = MethodChannel('BalanceRecordRepository');
-  Database? db;
+  final DatabaseProvider databaseProvider;
 
-  // DBを取得
-  Future<Database> get database async {
-    if (db != null) return db!;
+  BalanceRecordRepository(this.databaseProvider);
 
-    db = await openDB();
-    return db!;
-  }
+  Future<Database> get database => databaseProvider.database;
 
   void registerMethodHandler() {
     platform.setMethodCallHandler((call) async {
@@ -51,32 +47,6 @@ class BalanceRecordRepository {
     });
   }
 
-  Future<Database> openDB() async {
-    print('openDB');
-    final dbPath = await getDatabasesPath();
-    final path = join(dbPath, 'Balance.db');
-
-    return openDatabase(
-      path,
-      version: 1,
-      onCreate: (db, version) async {
-        await db.execute('''
-        CREATE TABLE balanceRecords (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        type TEXT,
-        income_category TEXT,
-        expense_category TEXT,
-        amount INTEGER,
-        memo TEXT,
-        date TEXT,
-        created_at TEXT,
-        game_flag INTEGER
-        );
-      ''');
-      },
-    );
-  }
-
   Future<void> insert(Map<String, dynamic> args) async {
     print('insert: $args');
     final db = await database;
@@ -85,8 +55,8 @@ class BalanceRecordRepository {
         'balanceRecords',
         {
           'type': args['type'],
-          'income_category': args['incomeCategory'],
-          'expense_category': args['expenseCategory'],
+          'income_category_id': args['incomeCategoryId'],
+          'expense_category_id': args['expenseCategoryId'],
           'amount': args['amount'],
           'memo': args['memo'],
           'date': args['date'],
@@ -104,8 +74,23 @@ class BalanceRecordRepository {
   Future<List<Map<String, dynamic>>> selectAll() async {
     print('selectAll');
     final db = await database;
-    // print(await db.rawQuery('SELECT COUNT(*) FROM balanceRecords'));
-    return await db.query('balanceRecords');
+    return await db.rawQuery('''
+      SELECT
+        b.id,
+        b.type,
+        b.income_category_id,
+        b.expense_category_id,
+        ic.name AS income_category,
+        ec.name AS expense_category,
+        b.amount,
+        b.memo,
+        b.date,
+        b.created_at,
+        b.game_flag
+      FROM balanceRecords b
+      LEFT JOIN categories ic ON b.income_category_id = ic.id
+      LEFT JOIN categories ec ON b.expense_category_id = ec.id
+    ''');
   }
 
   Future<int> getMonthlyIncome() async {

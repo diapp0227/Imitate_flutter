@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'DatabaseProvider.dart';
 import 'BalanceRecordRepository.dart';
+import 'CategoryRepository.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  final BalanceRecordRepository repo = BalanceRecordRepository();
-  repo.registerMethodHandler();
+  final databaseProvider = DatabaseProvider();
+  final balanceRecordRepository = BalanceRecordRepository(databaseProvider);
+  balanceRecordRepository.registerMethodHandler();
+  final categoryRepository = CategoryRepository(databaseProvider);
+  categoryRepository.registerMethodHandler();
 }
 
 class MyHomePage extends StatefulWidget {
