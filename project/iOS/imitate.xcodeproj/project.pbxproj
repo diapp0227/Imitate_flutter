@@ -38,6 +38,12 @@
 		B99ABA712FA1DEB6000E2A10 /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA702FA1DEB6000E2A10 /* CategoryRepository.swift */; };
 		B99ABA722FA1DEB6000E2A10 /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA702FA1DEB6000E2A10 /* CategoryRepository.swift */; };
 		B99ABA732FA1DEB6000E2A10 /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA702FA1DEB6000E2A10 /* CategoryRepository.swift */; };
+		B99ABA762FA1E97A000E2A10 /* CategoryManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA752FA1E97A000E2A10 /* CategoryManagementView.swift */; };
+		B99ABA772FA1E97A000E2A10 /* CategoryManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA752FA1E97A000E2A10 /* CategoryManagementView.swift */; };
+		B99ABA782FA1E97A000E2A10 /* CategoryManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA752FA1E97A000E2A10 /* CategoryManagementView.swift */; };
+		B99ABA7A2FA1E98D000E2A10 /* CategoryManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA792FA1E98D000E2A10 /* CategoryManagementViewModel.swift */; };
+		B99ABA7B2FA1E98D000E2A10 /* CategoryManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA792FA1E98D000E2A10 /* CategoryManagementViewModel.swift */; };
+		B99ABA7C2FA1E98D000E2A10 /* CategoryManagementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA792FA1E98D000E2A10 /* CategoryManagementViewModel.swift */; };
 		B9AB12352F9C000000000001 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12342F9C000000000001 /* AppLogger.swift */; };
 		B9AB12362F9C000000000001 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12342F9C000000000001 /* AppLogger.swift */; };
 		B9AB12372F9C000000000001 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12342F9C000000000001 /* AppLogger.swift */; };
@@ -151,6 +157,8 @@
 		B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		B99ABA6C2FA1DEA3000E2A10 /* CategoryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInfo.swift; sourceTree = "<group>"; };
 		B99ABA702FA1DEB6000E2A10 /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepository.swift; sourceTree = "<group>"; };
+		B99ABA752FA1E97A000E2A10 /* CategoryManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryManagementView.swift; sourceTree = "<group>"; };
+		B99ABA792FA1E98D000E2A10 /* CategoryManagementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryManagementViewModel.swift; sourceTree = "<group>"; };
 		B9AB12342F9C000000000001 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
 		B9AB12382F9C000000000002 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		B9B00CCC2E518DED00BCB306 /* imitate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imitate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -213,6 +221,7 @@
 			children = (
 				B9329E052F8ED5E7000797AB /* TopHomeViewModel.swift */,
 				B95E7F592F8558C10071D91A /* HistoryHomeViewModel.swift */,
+				B99ABA792FA1E98D000E2A10 /* CategoryManagementViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -305,6 +314,7 @@
 			children = (
 				B9C191A32EFFDBD200AFE3C3 /* BaseHomeView.swift */,
 				B9C191B32EFFDCD100AFE3C3 /* TopHomeView.swift */,
+				B99ABA752FA1E97A000E2A10 /* CategoryManagementView.swift */,
 				B9C191B82EFFDDB700AFE3C3 /* InputHomeView.swift */,
 				B9C191BC2EFFDE3000AFE3C3 /* GameHomeView.swift */,
 				B9C191C02EFFDE4E00AFE3C3 /* HistoryHomeView.swift */,
@@ -549,8 +559,10 @@
 				B95E7F5B2F8558C10071D91A /* HistoryHomeViewModel.swift in Sources */,
 				B9B00CD02E518DED00BCB306 /* imitateApp.swift in Sources */,
 				B99ABA6D2FA1DEA3000E2A10 /* CategoryInfo.swift in Sources */,
+				B99ABA7A2FA1E98D000E2A10 /* CategoryManagementViewModel.swift in Sources */,
 				B95E7F5E2F8558C10071D91A /* HistoryInfoMapper.swift in Sources */,
 				B9C191CA2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */,
+				B99ABA762FA1E97A000E2A10 /* CategoryManagementView.swift in Sources */,
 				B9C191D12F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */,
 				B96CBAAF2E51BF7800DB2E48 /* SceneDelegate.swift in Sources */,
 				B9E0D79A2F85344B00CF247C /* DictionaryExtension.swift in Sources */,
@@ -573,8 +585,10 @@
 				B95E7F672F8558D70071D91A /* HistoryInfoMapperTests.swift in Sources */,
 				B9C191B52EFFDCD100AFE3C3 /* TopHomeView.swift in Sources */,
 				B9C191A72EFFDC2400AFE3C3 /* BaseHomeView.swift in Sources */,
+				B99ABA7B2FA1E98D000E2A10 /* CategoryManagementViewModel.swift in Sources */,
 				B9C191A92EFFDC2A00AFE3C3 /* SceneDelegate.swift in Sources */,
 				B9E0D79B2F85344B00CF247C /* DictionaryExtension.swift in Sources */,
+				B99ABA772FA1E97A000E2A10 /* CategoryManagementView.swift in Sources */,
 				B9C191C62EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */,
 				B9329E072F8ED5E7000797AB /* TopHomeViewModel.swift in Sources */,
 				B9DEC55B2F1D538B0085FEC5 /* HistoryRowView.swift in Sources */,
@@ -626,8 +640,10 @@
 				B9C191C72EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */,
 				B9C191BF2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */,
 				B9C166642F267E7600A3BEC5 /* BalanceRecordInfo.swift in Sources */,
+				B99ABA7C2FA1E98D000E2A10 /* CategoryManagementViewModel.swift in Sources */,
 				B99ABA732FA1DEB6000E2A10 /* CategoryRepository.swift in Sources */,
 				B95E7F5D2F8558C10071D91A /* HistoryHomeViewModel.swift in Sources */,
+				B99ABA782FA1E97A000E2A10 /* CategoryManagementView.swift in Sources */,
 				B9C191CC2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */,
 				B9C191D32F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */,
 			);
