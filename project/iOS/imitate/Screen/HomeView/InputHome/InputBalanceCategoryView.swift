@@ -8,56 +8,49 @@
 import SwiftUI
 
 struct InputBalanceCategoryView: View {
-    
+
     /// 指定してる種類
     @Binding var balanceType: InputBalanceSegmentView.BalanceType
-    /// 指定してる収入カテゴリ名
-    @Binding var selectedIncomeCategory: String
-    /// 指定してる支出カテゴリ名
-    @Binding var selectedExpensesCategory: String
+    /// 選択中の収入カテゴリID
+    @Binding var selectedIncomeCategoryId: Int?
+    /// 選択中の支出カテゴリID
+    @Binding var selectedExpenseCategoryId: Int?
     /// 収入カテゴリ一覧
-    var incomeCategoryList: [String]
+    var incomeCategoryList: [CategoryInfo]
     /// 支出カテゴリ一覧
-    var expensesCategoryList: [String]
-    
+    var expenseCategoryList: [CategoryInfo]
+
     var body: some View {
         HStack(alignment: .center, spacing: 8) {
             Text("カテゴリー")
-            
+
             switch balanceType {
             case .income:
-                Picker(selectedIncomeCategory.isEmpty ? "選択してください" : selectedIncomeCategory, selection: $selectedIncomeCategory) {
-                    if !selectedIncomeCategory.isEmpty {
-                        ForEach(Array(incomeCategoryList.enumerated()), id: \.offset) { _, category in
-                            Text(category).tag(category)
-                        }
-                    }
-                }
-                .pickerStyle(.menu)
-                .frame(maxWidth: .infinity)
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray.opacity(0.4))
+                categoryPicker(
+                    selectedId: $selectedIncomeCategoryId,
+                    categories: incomeCategoryList
                 )
             case .expenses:
-                Picker(selectedExpensesCategory.isEmpty ? "選択してください" : selectedExpensesCategory, selection: $selectedExpensesCategory) {
-                    if !selectedIncomeCategory.isEmpty {
-                        ForEach(Array(expensesCategoryList.enumerated()), id: \.offset) { _, category in
-                            Text(category).tag(category)
-                        }
-                    }
-                }
-                .pickerStyle(.menu)
-                .frame(maxWidth: .infinity)
-                .background(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray.opacity(0.4))
+                categoryPicker(
+                    selectedId: $selectedExpenseCategoryId,
+                    categories: expenseCategoryList
                 )
             }
         }
     }
-}
 
-//#Preview {
-//    InputBalanceCategoryView()
-//}
+    private func categoryPicker(selectedId: Binding<Int?>, categories: [CategoryInfo]) -> some View {
+        let label = categories.first(where: { $0.id == selectedId.wrappedValue })?.name ?? "選択してください"
+        return Picker(label, selection: selectedId) {
+            ForEach(categories, id: \.id) { category in
+                Text(category.name ?? "").tag(category.id)
+            }
+        }
+        .pickerStyle(.menu)
+        .frame(maxWidth: .infinity)
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color.gray.opacity(0.4))
+        )
+    }
+}

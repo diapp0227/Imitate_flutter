@@ -15,18 +15,20 @@ class FlutterEngineManager {
     private(set) var flutterEngine: FlutterEngine?
     
     private(set) var channel: FlutterMethodChannel?
+    private(set) var categoryChannel: FlutterMethodChannel?
 
     func initialize() {
         flutterEngine = FlutterEngine(name: "")
         flutterEngine?.run()
         setChannel()
     }
-    
+
     func setChannel() {
         guard let flutterEngine = flutterEngine else {
             return
         }
         GeneratedPluginRegistrant.register(with: flutterEngine)
         channel = FlutterMethodChannel(name: "BalanceRecordRepository", binaryMessenger: flutterEngine.binaryMessenger)
+        categoryChannel = FlutterMethodChannel(name: "CategoryRepository", binaryMessenger: flutterEngine.binaryMessenger)
     }
 }

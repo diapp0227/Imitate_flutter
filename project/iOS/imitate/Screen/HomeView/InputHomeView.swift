@@ -8,43 +8,39 @@
 import SwiftUI
 
 struct InputHomeView: View {
-    
+
     @Environment(\.dismiss) private var dismiss
-    
+
     @State private var showErrorMessageAlert = false
     @State private var isManualDismiss = false
-    
+
     /// 種類カテゴリ(収入・支出) の選択状態
     @State var segmentSelected: InputBalanceSegmentView.BalanceType = .income
     /// 金額
     @State private var amountText = ""
-    // 選択中のカテゴリ
-    /// 指定してる収入カテゴリ名
-    @State private var selectedIncomeCategory: String = ""
-    /// 指定してる支出カテゴリ名
-    @State private var selectedExpensesCategory: String = ""
-    
-    @State var categoryList = [String]()
-    
-    // TODO: カテゴリ一覧は、flutter側から取得できるようにする
-    /// 収入種類のカテゴリ一覧
-    let incomeCategoryList = ["給料", "その他"]
+
+    /// 収入カテゴリ一覧
+    @State private var incomeCategoryList: [CategoryInfo] = []
     /// 支出カテゴリ一覧
-    let expensesCategoryList = ["食費", "外食費", "日用品", "交通費", "衣服", "交通費", "趣味", "その他"]
-    
+    @State private var expenseCategoryList: [CategoryInfo] = []
+    /// 選択中の収入カテゴリID
+    @State private var selectedIncomeCategoryId: Int? = nil
+    /// 選択中の支出カテゴリID
+    @State private var selectedExpenseCategoryId: Int? = nil
+
     /// 指定している日付情報
     @State private var selectedDate = Date()
-    
+
     /// 入力したメモ文字列
     @State private var memoText = ""
-    
+
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
-                
+
                 // 種類カテゴリ(収入・支出)
                 InputBalanceSegmentView(selected: $segmentSelected)
-                
+
                 // 金額
                 HStack(alignment: .center, spacing: 16) {
                     Text("金額")
@@ -52,13 +48,16 @@ struct InputHomeView: View {
                         .keyboardType(.numberPad)
                         .textFieldStyle(.roundedBorder)
                 }
-                
+
                 // カテゴリー
-                InputBalanceCategoryView(balanceType: $segmentSelected,
-                                         selectedIncomeCategory: $selectedIncomeCategory,
-                                         selectedExpensesCategory: $selectedExpensesCategory,
-                                         incomeCategoryList: incomeCategoryList,
-                                         expensesCategoryList: expensesCategoryList)
+                InputBalanceCategoryView(
+                    balanceType: $segmentSelected,
+                    selectedIncomeCategoryId: $selectedIncomeCategoryId,
+                    selectedExpenseCategoryId: $selectedExpenseCategoryId,
+                    incomeCategoryList: incomeCategoryList,
+                    expenseCategoryList: expenseCategoryList
+                )
+
                 // 日付
                 DatePicker(
                     "日付",
@@ -66,7 +65,7 @@ struct InputHomeView: View {
                     displayedComponents: .date
                 )
                 .datePickerStyle(.compact)
-                
+
                 VStack(alignment: .leading, spacing: 16) {
                     Text("メモ(任意)")
                     TextEditor(text: $memoText)
@@ -79,9 +78,8 @@ struct InputHomeView: View {
                 }
             }
             .logScreenAppeared()
-            .onAppear() {
-                selectedIncomeCategory = incomeCategoryList.first ?? ""
-                selectedExpensesCategory = expensesCategoryList.first ?? ""
+            .onAppear {
+                fetchCategories()
             }
             .padding()
             .background(
@@ -97,7 +95,7 @@ struct InputHomeView: View {
             }
             isManualDismiss = false
         }
-        .alert("金額を入力してください" ,isPresented: $showErrorMessageAlert) {
+        .alert("金額を入力してください", isPresented: $showErrorMessageAlert) {
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
@@ -118,41 +116,64 @@ struct InputHomeView: View {
             }
         }
     }
-    
+
+    /// カテゴリ一覧をFlutterから取得
+    private func fetchCategories() {
+        CategoryRepository.shared.getCategories(type: .income) { categories in
+            incomeCategoryList = categories
+            if selectedIncomeCategoryId == nil {
+                selectedIncomeCategoryId = categories.first.flatMap { $0.id }
+            }
+        } onFailure: {}
+
+        CategoryRepository.shared.getCategories(type: .expense) { categories in
+            expenseCategoryList = categories
+            if selectedExpenseCategoryId == nil {
+                selectedExpenseCategoryId = categories.first.flatMap { $0.id }
+            }
+        } onFailure: {}
+
+    }
+
     /// 入力した情報を判定
     private func validateInputRecode() {
         AppLogger.shared.userAction("保存")
-        // 金額が存在するか
         if amountText.isEmpty {
             showErrorMessageAlert = true
             return
         }
-        // 保存処理
         savaRecode()
     }
-    
+
     /// 入力したレコードを保存
     private func savaRecode() {
-        // 種類カテゴリで選択していないカテゴリ名を空文字にする
+        let incomeCategoryId: Int
+        let expenseCategoryId: Int
+
         switch segmentSelected {
         case .income:
-            selectedExpensesCategory = ""
+            incomeCategoryId = selectedIncomeCategoryId ?? 0
+            expenseCategoryId = 0
         case .expenses:
-            selectedIncomeCategory = ""
+            incomeCategoryId = 0
+            expenseCategoryId = selectedExpenseCategoryId ?? 0
         }
-        // レコード追加
-        BalanceRecordRepository.shared.insertRecord(arguments: ["type": segmentSelected.name,
-                                                                "incomeCategory": selectedIncomeCategory,
-                                                                "expenseCategory": selectedExpensesCategory,
-                                                                "amount": amountText,
-                                                                "memo": memoText,
-                                                                "date": selectedDate.toString(style: .yyyy_MM_dd),
-                                                                "createdAt": Date().toString(style: .yyyy_MM_dd),
-                                                                "gameFlag": false])
-        // レコード取得
+
+        BalanceRecordRepository.shared.insertRecord(arguments: [
+            "type": segmentSelected.name,
+            "incomeCategoryId": incomeCategoryId,
+            "expenseCategoryId": expenseCategoryId,
+            "amount": amountText,
+            "memo": memoText,
+            "date": selectedDate.toString(style: .yyyy_MM_dd),
+            "createdAt": Date().toString(style: .yyyy_MM_dd),
+            "gameFlag": false
+        ])
+
         BalanceRecordRepository.shared.selectAll(onSuccess: { _ in
         }, onFailure: {
         })
+
         isManualDismiss = true
         dismiss()
     }
