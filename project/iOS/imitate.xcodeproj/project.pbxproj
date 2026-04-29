@@ -32,6 +32,18 @@
 		B961A26C2F09A37900B2989C /* InputBalanceCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B961A2692F09A37900B2989C /* InputBalanceCategoryView.swift */; };
 		B96CBAAB2E51BF3A00DB2E48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */; };
 		B96CBAAF2E51BF7800DB2E48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */; };
+		B99ABA6D2FA1DEA3000E2A10 /* CategoryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA6C2FA1DEA3000E2A10 /* CategoryInfo.swift */; };
+		B99ABA6E2FA1DEA3000E2A10 /* CategoryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA6C2FA1DEA3000E2A10 /* CategoryInfo.swift */; };
+		B99ABA6F2FA1DEA3000E2A10 /* CategoryInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA6C2FA1DEA3000E2A10 /* CategoryInfo.swift */; };
+		B99ABA712FA1DEB6000E2A10 /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA702FA1DEB6000E2A10 /* CategoryRepository.swift */; };
+		B99ABA722FA1DEB6000E2A10 /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA702FA1DEB6000E2A10 /* CategoryRepository.swift */; };
+		B99ABA732FA1DEB6000E2A10 /* CategoryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B99ABA702FA1DEB6000E2A10 /* CategoryRepository.swift */; };
+		B9AB12352F9C000000000001 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12342F9C000000000001 /* AppLogger.swift */; };
+		B9AB12362F9C000000000001 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12342F9C000000000001 /* AppLogger.swift */; };
+		B9AB12372F9C000000000001 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12342F9C000000000001 /* AppLogger.swift */; };
+		B9AB12392F9C000000000002 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12382F9C000000000002 /* ViewExtension.swift */; };
+		B9AB123A2F9C000000000002 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12382F9C000000000002 /* ViewExtension.swift */; };
+		B9AB123B2F9C000000000002 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12382F9C000000000002 /* ViewExtension.swift */; };
 		B9B00CD02E518DED00BCB306 /* imitateApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CCF2E518DED00BCB306 /* imitateApp.swift */; };
 		B9B00CD22E518DED00BCB306 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9B00CD12E518DED00BCB306 /* LaunchView.swift */; };
 		B9B00CD42E518DEE00BCB306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B9B00CD32E518DEE00BCB306 /* Assets.xcassets */; };
@@ -73,12 +85,12 @@
 		B9C191CA2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */; };
 		B9C191CB2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */; };
 		B9C191CC2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */; };
-		B9C191D12F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191D02F0A000000AFE3C3 /* BalanceGraphView.swift */; };
-		B9C191D22F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191D02F0A000000AFE3C3 /* BalanceGraphView.swift */; };
-		B9C191D32F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191D02F0A000000AFE3C3 /* BalanceGraphView.swift */; };
 		B9C191CE2F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */; };
 		B9C191CF2F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */; };
 		B9C191D02F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */; };
+		B9C191D12F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191D02F0A000000AFE3C3 /* BalanceGraphView.swift */; };
+		B9C191D22F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191D02F0A000000AFE3C3 /* BalanceGraphView.swift */; };
+		B9C191D32F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C191D02F0A000000AFE3C3 /* BalanceGraphView.swift */; };
 		B9D08D302E520ED20074BFD5 /* FlutterEngineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */; };
 		B9DEC5572F1BF4AC0085FEC5 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DEC5562F1BF4AC0085FEC5 /* DateExtension.swift */; };
 		B9DEC55A2F1D525C0085FEC5 /* HistoryRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DEC5592F1D525C0085FEC5 /* HistoryRowView.swift */; };
@@ -89,12 +101,6 @@
 		B9E0D79A2F85344B00CF247C /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E0D7992F85344B00CF247C /* DictionaryExtension.swift */; };
 		B9E0D79B2F85344B00CF247C /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E0D7992F85344B00CF247C /* DictionaryExtension.swift */; };
 		B9E0D79C2F85344B00CF247C /* DictionaryExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9E0D7992F85344B00CF247C /* DictionaryExtension.swift */; };
-		B9AB12352F9C000000000001 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12342F9C000000000001 /* AppLogger.swift */; };
-		B9AB12362F9C000000000001 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12342F9C000000000001 /* AppLogger.swift */; };
-		B9AB12372F9C000000000001 /* AppLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12342F9C000000000001 /* AppLogger.swift */; };
-		B9AB12392F9C000000000002 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12382F9C000000000002 /* ViewExtension.swift */; };
-		B9AB123A2F9C000000000002 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12382F9C000000000002 /* ViewExtension.swift */; };
-		B9AB123B2F9C000000000002 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9AB12382F9C000000000002 /* ViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +149,10 @@
 		B961A2692F09A37900B2989C /* InputBalanceCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputBalanceCategoryView.swift; sourceTree = "<group>"; };
 		B96CBAAA2E51BF3A00DB2E48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B96CBAAE2E51BF7800DB2E48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B99ABA6C2FA1DEA3000E2A10 /* CategoryInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryInfo.swift; sourceTree = "<group>"; };
+		B99ABA702FA1DEB6000E2A10 /* CategoryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRepository.swift; sourceTree = "<group>"; };
+		B9AB12342F9C000000000001 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
+		B9AB12382F9C000000000002 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		B9B00CCC2E518DED00BCB306 /* imitate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = imitate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9B00CCF2E518DED00BCB306 /* imitateApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imitateApp.swift; sourceTree = "<group>"; };
 		B9B00CD12E518DED00BCB306 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
@@ -161,11 +171,9 @@
 		B9C191C02EFFDE4E00AFE3C3 /* HistoryHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryHomeView.swift; sourceTree = "<group>"; };
 		B9C191C42EFFDE6400AFE3C3 /* SettingHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHomeView.swift; sourceTree = "<group>"; };
 		B9C191C92EFFF4C500AFE3C3 /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
-		B9C191D02F0A000000AFE3C3 /* BalanceGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceGraphView.swift; sourceTree = "<group>"; };
 		B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceRecordRepository.swift; sourceTree = "<group>"; };
+		B9C191D02F0A000000AFE3C3 /* BalanceGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceGraphView.swift; sourceTree = "<group>"; };
 		B9D08D2F2E520ED20074BFD5 /* FlutterEngineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterEngineManager.swift; sourceTree = "<group>"; };
-		B9AB12342F9C000000000001 /* AppLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogger.swift; sourceTree = "<group>"; };
-		B9AB12382F9C000000000002 /* ViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		B9DEC5562F1BF4AC0085FEC5 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		B9DEC5592F1D525C0085FEC5 /* HistoryRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRowView.swift; sourceTree = "<group>"; };
 		B9E0D7992F85344B00CF247C /* DictionaryExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtension.swift; sourceTree = "<group>"; };
@@ -367,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				B9C191CD2F081E9400AFE3C3 /* BalanceRecordRepository.swift */,
+				B99ABA702FA1DEB6000E2A10 /* CategoryRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -385,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				B9C166612F26772400A3BEC5 /* BalanceRecordInfo.swift */,
+				B99ABA6C2FA1DEA3000E2A10 /* CategoryInfo.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -535,8 +545,10 @@
 				B9AB12392F9C000000000002 /* ViewExtension.swift in Sources */,
 				B9C166622F26772400A3BEC5 /* BalanceRecordInfo.swift in Sources */,
 				B9DEC5572F1BF4AC0085FEC5 /* DateExtension.swift in Sources */,
+				B99ABA712FA1DEB6000E2A10 /* CategoryRepository.swift in Sources */,
 				B95E7F5B2F8558C10071D91A /* HistoryHomeViewModel.swift in Sources */,
 				B9B00CD02E518DED00BCB306 /* imitateApp.swift in Sources */,
+				B99ABA6D2FA1DEA3000E2A10 /* CategoryInfo.swift in Sources */,
 				B95E7F5E2F8558C10071D91A /* HistoryInfoMapper.swift in Sources */,
 				B9C191CA2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */,
 				B9C191D12F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */,
@@ -555,6 +567,7 @@
 				B9C191A52EFFDC2100AFE3C3 /* AppDelegate.swift in Sources */,
 				B95E7F5F2F8558C10071D91A /* HistoryInfoMapper.swift in Sources */,
 				B9C191AD2EFFDC3000AFE3C3 /* LaunchView.swift in Sources */,
+				B99ABA722FA1DEB6000E2A10 /* CategoryRepository.swift in Sources */,
 				B961A2662F097AEB00B2989C /* InputBalanceSegmentView.swift in Sources */,
 				B9B00CE12E518DEE00BCB306 /* imitateTests.swift in Sources */,
 				B95E7F672F8558D70071D91A /* HistoryInfoMapperTests.swift in Sources */,
@@ -575,6 +588,7 @@
 				B9C191CF2F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */,
 				B9DEC55D2F1D53930085FEC5 /* DateExtension.swift in Sources */,
 				B9C191BA2EFFDDB700AFE3C3 /* InputHomeView.swift in Sources */,
+				B99ABA6E2FA1DEA3000E2A10 /* CategoryInfo.swift in Sources */,
 				B9C191BE2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */,
 				B95E7F5C2F8558C10071D91A /* HistoryHomeViewModel.swift in Sources */,
 				B9C191C22EFFDE4E00AFE3C3 /* HistoryHomeView.swift in Sources */,
@@ -606,11 +620,13 @@
 				B9E0D79C2F85344B00CF247C /* DictionaryExtension.swift in Sources */,
 				B9C191A62EFFDC2100AFE3C3 /* AppDelegate.swift in Sources */,
 				B9C191D02F081E9400AFE3C3 /* BalanceRecordRepository.swift in Sources */,
+				B99ABA6F2FA1DEA3000E2A10 /* CategoryInfo.swift in Sources */,
 				B9B00CED2E518DEE00BCB306 /* imitateUITestsLaunchTests.swift in Sources */,
 				B9B00CEB2E518DEE00BCB306 /* imitateUITests.swift in Sources */,
 				B9C191C72EFFDE6400AFE3C3 /* SettingHomeView.swift in Sources */,
 				B9C191BF2EFFDE3000AFE3C3 /* GameHomeView.swift in Sources */,
 				B9C166642F267E7600A3BEC5 /* BalanceRecordInfo.swift in Sources */,
+				B99ABA732FA1DEB6000E2A10 /* CategoryRepository.swift in Sources */,
 				B95E7F5D2F8558C10071D91A /* HistoryHomeViewModel.swift in Sources */,
 				B9C191CC2EFFF4C500AFE3C3 /* BalanceView.swift in Sources */,
 				B9C191D32F0A000000AFE3C3 /* BalanceGraphView.swift in Sources */,
